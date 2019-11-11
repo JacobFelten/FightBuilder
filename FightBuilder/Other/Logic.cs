@@ -9,5 +9,8 @@ namespace FightBuilder.Other
     {
         public static string[] TypeValidation { get; } = 
             { "head", "chest", "gloves", "pants", "shoes", "ring", "rhand", "lhand" };
+
+        public static string[] ColorValidation { get; } =
+            { "black", "white", "red", "orange", "yellow", "green", "skyBlue", "blue", "purple", "pink" };
     }
 }

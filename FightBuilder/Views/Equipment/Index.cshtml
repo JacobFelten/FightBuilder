@@ -1,0 +1,82 @@
+﻿@model Equipment
+
+@{
+    ViewData["Title"] = "Design Equipment";
+    //"head", "chest", "gloves", "pants", "shoes", "ring", "rhand", "lhand"
+    //"black", "white", "red", "orange", "yellow", "green", "skyBlue", "blue", "purple", "pink"
+}
+
+<form asp-action="Index" method="post">
+    <div class="card container">
+        <div class="card-header">
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label asp-for="Type">Type:</label>
+                <select class="form-control" asp-for="Type">
+                    <option value="head">Head</option>
+                    <option value="chest">Chest</option>
+                    <option value="gloves">Gloves</option>
+                    <option value="pants">Pants</option>
+                    <option value="shoes">Shoes</option>
+                    <option value="ring">Ring</option>
+                    <option value="rhand">Right Hand</option>
+                    <option value="lhand">Left Hand</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name">Name:</label>
+                <input class="form-control" asp-for="Name" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Description">Description:</label>
+                <textarea class="form-control" rows="3" asp-for="Description"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="Color">Color:</label>
+                <select class="form-control" asp-for="Color">
+                    <option value="black">Black</option>
+                    <option value="white">White</option>
+                    <option value="red">Red</option>
+                    <option value="orange">Orange</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="green">Green</option>
+                    <option value="skyBlue">Sky Blue</option>
+                    <option value="blue">Blue</option>
+                    <option value="purple">Purple</option>
+                    <option value="pink">Pink</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhysDam">Physical Attack:</label>
+                <input class="form-control" asp-for="PhysDam" value="0" />
+            </div>
+            <div class="form-group">
+                <label asp-for="MagDam">Magic Attack:</label>
+                <input class="form-control" asp-for="MagDam" value="0" />
+            </div>
+            <div class="form-group">
+                <label asp-for="FireDam">Fire Attack:</label>
+                <input class="form-control" asp-for="FireDam" value="0" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PhysDef">Physical Defence:</label>
+                <input class="form-control" asp-for="PhysDef" value="0" />
+            </div>
+            <div class="form-group">
+                <label asp-for="MagDef">Magic Defence:</label>
+                <input class="form-control" asp-for="MagDef" value="0" />
+            </div>
+            <div class="form-group">
+                <label asp-for="FireDef">Fire Defence:</label>
+                <input class="form-control" asp-for="FireDef" value="0" />
+            </div>
+        </div>
+        <div class="card-footer row">
+            <div class="col-2"></div>
+            <button class="btn btn-secondary text-center col-8" type="submit"><h6>Save</h6></button>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</form>

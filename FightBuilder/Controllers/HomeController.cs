@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FightBuilder.Models;
+using FightBuilder.Other;
 
 namespace FightBuilder.Controllers
 {
@@ -31,6 +32,7 @@ namespace FightBuilder.Controllers
 
         public IActionResult DataTables()
         {
+            object debug = Repository.SavedEquipment;
             return View();
         }
     }

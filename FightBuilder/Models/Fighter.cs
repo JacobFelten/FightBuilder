@@ -10,6 +10,7 @@ namespace FightBuilder.Models
     {
         private SortedList<string, Equipment> equipment = new SortedList<string, Equipment>();
         private Equipment blank = new Equipment();
+        private string color;
 
         public Fighter()
         {
@@ -21,7 +22,19 @@ namespace FightBuilder.Models
 
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Color { get; set; }
+        public string Color
+        {
+            get { return color; }
+            set
+            {
+                if (Array.Exists(Logic.ColorValidation, element => element == value))
+                {
+                    color = value;
+                }
+                else
+                    throw new Exception(value + " is not a valid color type.");
+            }
+        }
         public int HitPoints { get; set; }
         public Equipment this[string key]
         {
