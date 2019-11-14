@@ -1,5 +1,27 @@
-﻿@{
+﻿@model List<Equipment>
+
+@{
     ViewData["Title"] = "Data Tables";
 }
 
-<h1>View the data of the things you've built here.</h1>
+@foreach (Equipment e in Model)
+{
+    <div class="flex-row">
+        <div class="card">
+            <div class="card-header text-center">
+                <h3>@e.Name</h3>
+            </div>
+            <div class="card-body">
+                Type:@e.Type <br />
+                Description:@e.Description <br />
+                Color:@e.Color <br />
+                Physical Damage:@e.PhysDam <br />
+                Magic Damage:@e.MagDam <br />
+                Fire Damage:@e.FireDam <br />
+                Physical Defence:@e.PhysDef <br />
+                Magic Defence:@e.MagDef <br />
+                Fire Defence:@e.FireDef
+            </div>
+        </div>
+    </div>
+}

@@ -12,21 +12,28 @@ namespace FightBuilder.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View(Logic.blankEquipment);
         }
         
         [HttpPost]
-        public RedirectToActionResult Index(Equipment equipment)
+        public IActionResult Save(Equipment equipment)
         {
             if (ModelState.IsValid)
             {
-                Repository.SavedEquipment.Add(equipment);
+                if (equipment.Id == 0)
+                {
+                    equipment.Id = Repository.SavedEquipment.Count + 1;
+                    Repository.SavedEquipment.Add(equipment);
+                    ViewBag.EquipmentStatus = "New Equipment Saved!";
+                }
+                else
+                {
+                    Equipment e = Logic.GetEquipmentById(equipment.Id);
+                    e = equipment;
+                    ViewBag.EquipmentStatus = "Equipment Saved!";
+                }
             }
-            else
-            {
-                int one = 1;
-            }
-            return RedirectToAction();
+            return View("Index", equipment);
         }
     }
 }

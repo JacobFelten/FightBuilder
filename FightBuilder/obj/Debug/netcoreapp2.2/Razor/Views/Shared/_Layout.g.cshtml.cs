@@ -23,8 +23,13 @@ using FightBuilder.Models;
 
 #line default
 #line hidden
+#line 3 "C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilder\Views\_ViewImports.cshtml"
+using FightBuilder.Other;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"125463ff8a60966706a7fca1515371f360cd5497", @"/Views/Shared/_Layout.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b5400f9945ee86556c0e41c6b4b078000bd7d01c", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"be1c6d1dbec6c5e752624ee5eb9cda19d9e77711", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__Layout : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("rel", new global::Microsoft.AspNetCore.Html.HtmlString("stylesheet"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -65,7 +70,7 @@ using FightBuilder.Models;
             WriteLiteral("<!DOCTYPE html>\r\n<html>\r\n");
             EndContext();
             BeginContext(25, 206, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "125463ff8a60966706a7fca1515371f360cd54976651", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "125463ff8a60966706a7fca1515371f360cd54976827", async() => {
                 BeginContext(31, 72, true);
                 WriteLiteral("\r\n    <meta name=\"viewport\" content=\"width=device-width\" />\r\n    <title>");
                 EndContext();
@@ -80,7 +85,7 @@ using FightBuilder.Models;
                 WriteLiteral(" - Fight!Builder</title>\r\n    ");
                 EndContext();
                 BeginContext(151, 71, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "125463ff8a60966706a7fca1515371f360cd54977514", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "125463ff8a60966706a7fca1515371f360cd54977690", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -114,12 +119,12 @@ using FightBuilder.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(233, 797, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "125463ff8a60966706a7fca1515371f360cd54979642", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "125463ff8a60966706a7fca1515371f360cd54979818", async() => {
                 BeginContext(239, 121, true);
                 WriteLiteral("\r\n    <nav class=\"navbar navbar-expand-sm bg-danger\">\r\n        <ul class=\"navbar-nav\">\r\n            <li class=\"nav-item\">");
                 EndContext();
                 BeginContext(360, 80, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "125463ff8a60966706a7fca1515371f360cd549710154", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "125463ff8a60966706a7fca1515371f360cd549710330", async() => {
                     BeginContext(432, 4, true);
                     WriteLiteral("Home");
                     EndContext();
@@ -144,7 +149,7 @@ using FightBuilder.Models;
                 WriteLiteral("</li>\r\n            <li class=\"nav-item\">");
                 EndContext();
                 BeginContext(480, 97, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "125463ff8a60966706a7fca1515371f360cd549711952", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "125463ff8a60966706a7fca1515371f360cd549712128", async() => {
                     BeginContext(557, 16, true);
                     WriteLiteral("Design Equipment");
                     EndContext();
@@ -169,7 +174,7 @@ using FightBuilder.Models;
                 WriteLiteral("</li>\r\n            <li class=\"nav-item\">");
                 EndContext();
                 BeginContext(617, 99, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "125463ff8a60966706a7fca1515371f360cd549713763", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "125463ff8a60966706a7fca1515371f360cd549713939", async() => {
                     BeginContext(697, 15, true);
                     WriteLiteral("Build a Fighter");
                     EndContext();
@@ -194,7 +199,7 @@ using FightBuilder.Models;
                 WriteLiteral("</li>\r\n            <li class=\"nav-item\">");
                 EndContext();
                 BeginContext(756, 82, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "125463ff8a60966706a7fca1515371f360cd549715573", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "125463ff8a60966706a7fca1515371f360cd549715749", async() => {
                     BeginContext(828, 6, true);
                     WriteLiteral("Fight!");
                     EndContext();
@@ -219,7 +224,7 @@ using FightBuilder.Models;
                 WriteLiteral("</li>\r\n            <li class=\"nav-item\">");
                 EndContext();
                 BeginContext(878, 92, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "125463ff8a60966706a7fca1515371f360cd549717373", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "125463ff8a60966706a7fca1515371f360cd549717549", async() => {
                     BeginContext(955, 11, true);
                     WriteLiteral("Data Tables");
                     EndContext();

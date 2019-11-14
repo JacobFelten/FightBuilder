@@ -12,6 +12,8 @@ namespace FightBuilder.Models
         private string type;
         private string color;
 
+        public int Id { get; set; }
+
         public string Type
         {
             get { return type; }
@@ -27,7 +29,7 @@ namespace FightBuilder.Models
         }
 
         [Required(ErrorMessage = "Please enter a name for your equipment.")]
-        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Please enter a valid email address")]
+        //[RegularExpression(".+\\@.+\\..+", ErrorMessage = "Please enter a valid email address")]
         public string Name { get; set; }
 
         public string Description { get; set; }

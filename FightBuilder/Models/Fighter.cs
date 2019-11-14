@@ -9,7 +9,6 @@ namespace FightBuilder.Models
     public class Fighter
     {
         private SortedList<string, Equipment> equipment = new SortedList<string, Equipment>();
-        private Equipment blank = new Equipment();
         private string color;
 
         public Fighter()
@@ -41,7 +40,7 @@ namespace FightBuilder.Models
             get
             {
                 if (equipment[key] == null)
-                    return blank;
+                    return Logic.blankEquipment;
                 return equipment[key];
             }
             set

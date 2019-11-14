@@ -32,8 +32,7 @@ namespace FightBuilder.Controllers
 
         public IActionResult DataTables()
         {
-            object debug = Repository.SavedEquipment;
-            return View();
+            return View(Repository.SavedEquipment);
         }
     }
 }
