@@ -8,11 +8,17 @@ namespace FightBuilder.Other
 {
     public static class Repository
     {
-        private static List<Equipment> equipment = new List<Equipment>();
+        private static List<Equipment> savedEquipment = new List<Equipment>();
+        private static List<Fighter> savedFighters = new List<Fighter>();
 
         public static List<Equipment> SavedEquipment
         {
-            get { return equipment; }
+            get { return savedEquipment; }
+        }
+
+        public static List<Fighter> SavedFighters
+        {
+            get { return savedFighters; }
         }
     }
 }

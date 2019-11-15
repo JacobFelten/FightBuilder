@@ -25,5 +25,49 @@ namespace FightBuilder.Other
             }
             return null;
         }
+
+        public static bool EquipmentExists(string name)
+        {
+            foreach (Equipment e in Repository.SavedEquipment)
+            {
+                if (e.Name == name)
+                    return true;
+            }
+            return false;
+        }
+
+        public static void CopyEquipment(Equipment original, Equipment copy)
+        {
+            copy.Id = original.Id;
+            copy.Name = original.Name;
+            copy.Type = original.Type;
+            copy.Description = original.Description;
+            copy.Color = original.Color;
+            copy.PhysDam = original.PhysDam;
+            copy.MagDam = original.MagDam;
+            copy.FireDam = original.FireDam;
+            copy.PhysDef = original.PhysDef;
+            copy.MagDef = original.MagDef;
+            copy.FireDef = original.FireDef;
+        }
+
+        public static string GenerateEquipmentPic(Equipment e)
+        {
+            string pic = "";
+
+            if (e.Type == "Right Hand")
+                pic += "Sword";
+            else if (e.Type == "Left Hand")
+                pic += "Shield";
+            else
+                pic += e.Type;
+
+            if (e.Color == "Sky Blue")
+                pic += "SkyBlue";
+            else
+                pic += e.Color;
+
+            return pic + ".jpg";
+        }
     }
 }
