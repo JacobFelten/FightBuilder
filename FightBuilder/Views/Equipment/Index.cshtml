@@ -6,17 +6,17 @@
     //"black", "white", "red", "orange", "yellow", "green", "skyBlue", "blue", "purple", "pink"
 
     string pic = Logic.GenerateEquipmentPic(Model);
-    string hidden = "display:none";
+    string hidden = "hidden";
     if (Model == Logic.blankEquipment)
     {
         ViewBag.EquipmentStatus = "";
         ViewBag.EquipmentDuplicate = "";
+        pic = "testPic.jpg";
     }
     if ((ViewBag.EquipmentDuplicate ?? "") != "")
     {
         hidden = "";
     }
-
 }
 
 <form asp-action="Edit" method="post">
@@ -48,7 +48,7 @@
         <div class="card-header">
             <div asp-validation-summary="All" class="text-danger"></div>
             <h1 class="text-success">@ViewBag.EquipmentStatus</h1>
-            <ul style="@hidden">
+            <ul class="@hidden">
                 <li class="text-danger">@ViewBag.EquipmentDuplicate</li>
             </ul>
         </div>
