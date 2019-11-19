@@ -32,7 +32,7 @@ namespace FightBuilder.Controllers
 
         public IActionResult DataTables()
         {
-            return View(Repository.SavedEquipment);
+            return View(Repository.SavedFighters);
         }
     }
 }

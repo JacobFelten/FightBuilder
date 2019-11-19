@@ -1,26 +1,19 @@
-﻿@model List<Equipment>
+﻿@model List<Fighter>
 
 @{
     ViewData["Title"] = "Data Tables";
 }
 
-@foreach (Equipment e in Model)
+@foreach (Fighter f in Model)
 {
     <div class="flex-row">
         <div class="card">
             <div class="card-header text-center">
-                <h3>@e.Name</h3>
+                <h3>@f.Name</h3>
             </div>
             <div class="card-body">
-                Type:@e.Type <br />
-                Description:@e.Description <br />
-                Color:@e.Color <br />
-                Physical Damage:@e.PhysDam <br />
-                Magic Damage:@e.MagDam <br />
-                Fire Damage:@e.FireDam <br />
-                Physical Defence:@e.PhysDef <br />
-                Magic Defence:@e.MagDef <br />
-                Fire Defence:@e.FireDef
+                Description:@f.Description <br />
+                Color:@f.Color <br />
             </div>
         </div>
     </div>

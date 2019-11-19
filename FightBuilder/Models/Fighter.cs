@@ -15,10 +15,11 @@ namespace FightBuilder.Models
         {
             for (int i = 0; i < Logic.TypeValidation.Length; i++)
             {
-                equipment.Add(Logic.TypeValidation[i], null);
+                equipment.Add(Logic.TypeValidation[i], Logic.blankEquipment);
             }
         }
 
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Color

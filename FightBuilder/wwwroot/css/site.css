@@ -60,6 +60,13 @@ img.fit {
     height: auto;
 }
 
+img.fit-small {
+    display: block;
+    margin: auto;
+    width: 90%;
+    height: auto;
+}
+
 .hidden {
     display: none;
 }
