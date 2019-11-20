@@ -37,6 +37,7 @@ namespace FightBuilder.Controllers
                 {
                     Equipment e = Logic.GetEquipmentById(equipment.Id);
                     Logic.CopyEquipment(equipment, e);
+                    Logic.UpdateFighters();
                     ViewBag.EquipmentStatus = "Equipment Saved!";
                 }
             }

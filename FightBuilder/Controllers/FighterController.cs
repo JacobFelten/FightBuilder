@@ -16,10 +16,19 @@ namespace FightBuilder.Controllers
         }
 
         [HttpPost]
-        public IActionResult Save(Fighter fighter)
+        public IActionResult Save(Fighter fighter, int head, int chest, int gloves, int pants, int shoes, int ring, int rHand, int lHand)
         {
             if (ModelState.IsValid)
             {
+                fighter["Head"] = Logic.GetEquipmentById(head);
+                fighter["Chest"] = Logic.GetEquipmentById(chest);
+                fighter["Gloves"] = Logic.GetEquipmentById(gloves);
+                fighter["Pants"] = Logic.GetEquipmentById(pants);
+                fighter["Shoes"] = Logic.GetEquipmentById(shoes);
+                fighter["Ring"] = Logic.GetEquipmentById(ring);
+                fighter["Right Hand"] = Logic.GetEquipmentById(rHand);
+                fighter["Left Hand"] = Logic.GetEquipmentById(lHand);
+
                 if (fighter.Id == 0)
                 {
                     if (!Logic.FighterExists(fighter.Name))
@@ -41,6 +50,14 @@ namespace FightBuilder.Controllers
                 }
             }
             return View("Index", fighter);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id)
+        {
+            if (id != 0)
+                return View("Index", Logic.GetFighterById(id));
+            return RedirectToAction("Index");
         }
     }
 }

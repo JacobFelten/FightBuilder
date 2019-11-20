@@ -3,13 +3,32 @@
 @{
     ViewData["Title"] = "Build a Figher";
     //{ "Head", "Chest", "Gloves", "Pants", "Shoes", "Ring", "Right Hand", "Left Hand" }
+    string hidden = "hidden";
+    if ((ViewBag.EquipmentDuplicate ?? "") != "")
+    {
+        hidden = "";
+    }
     string pic = Logic.GenerateFighterPic(Model);
     string[] pics = new string[Logic.TypeValidation.Count()];
     for (int i = 0; i < pics.Count(); i++)
     {
         if (Model == Logic.blankFighter || Model[Logic.TypeValidation[i]] == Logic.blankEquipment)
         {
-            pics[i] = "EquipmentBlank.jpg";
+            string type = "";
+
+            if (Logic.TypeValidation[i] == "Right Hand")
+            {
+                type += "Sword";
+            }
+            else if (Logic.TypeValidation[i] == "Left Hand")
+            {
+                type += "Shield";
+            }
+            else
+            {
+                type += Logic.TypeValidation[i];
+            }
+            pics[i] = type + "Blank.jpg";
         }
         else
         {
@@ -52,8 +71,12 @@
         <div class="card-header">
             <div asp-validation-summary="All" class="text-danger"></div>
             <h1 class="text-success">@ViewBag.EquipmentStatus</h1>
+            <ul class="@hidden">
+                <li class="text-danger">@ViewBag.EquipmentDuplicate</li>
+            </ul>
         </div>
         <div class="card-body">
+            <input type="hidden" asp-for="Id" value="@Model.Id" />
             <div class="form-group">
                 <label asp-for="Name">Name:</label>
                 <input class="form-control" asp-for="Name" value="@Model.Name" />
@@ -115,19 +138,19 @@
                         <div class="col-5"></div>
                         <div class="col-2">
                             <img class="fit" src="~/Images/@pics[0]" alt="Fighter Picture" />
-                            <select class="form-control" asp-for='@Model["Head"]'>
-                                <option value="@null">None</option>
+                            <select class="form-control" name="head">
+                                <option value="-1">None</option>
                                 @foreach (Equipment e in Repository.SavedEquipment)
                                 {
                                     if (e.Type == "Head")
                                     {
                                         if (e.Id == Model["Head"].Id)
                                         {
-                                            <option value="@e" selected>@e.Name</option>
+                                            <option value="@e.Id" selected>@e.Name</option>
                                         }
                                         else
                                         {
-                                            <option value="@e">@e.Name</option>
+                                            <option value="@e.Id">@e.Name</option>
                                         }
                                     }
                                 }
@@ -140,19 +163,19 @@
                         <div class="col-2">
                             <div class="row">
                                 <img class="fit-small" src="~/Images/@pics[1]" alt="Fighter Picture" />
-                                <select class="form-control" asp-for='@Model["Chest"]'>
-                                    <option value="@null">None</option>
+                                <select class="form-control" name="chest">
+                                    <option value="-1">None</option>
                                     @foreach (Equipment e in Repository.SavedEquipment)
                                     {
                                         if (e.Type == "Chest")
                                         {
                                             if (e.Id == Model["Chest"].Id)
                                             {
-                                                <option value="@e" selected>@e.Name</option>
+                                                <option value="@e.Id" selected>@e.Name</option>
                                             }
                                             else
                                             {
-                                                <option value="@e">@e.Name</option>
+                                                <option value="@e.Id">@e.Name</option>
                                             }
                                         }
                                     }
@@ -160,19 +183,19 @@
                             </div>
                             <div class="row">
                                 <img class="fit-small" src="~/Images/@pics[7]" alt="Fighter Picture" />
-                                <select class="form-control" asp-for='@Model["Left Hand"]'>
-                                    <option value="@null">None</option>
+                                <select class="form-control" name="lHand">
+                                    <option value="-1">None</option>
                                     @foreach (Equipment e in Repository.SavedEquipment)
                                     {
                                         if (e.Type == "Left Hand")
                                         {
                                             if (e.Id == Model["Left Hand"].Id)
                                             {
-                                                <option value="@e" selected>@e.Name</option>
+                                                <option value="@e.Id" selected>@e.Name</option>
                                             }
                                             else
                                             {
-                                                <option value="@e">@e.Name</option>
+                                                <option value="@e.Id">@e.Name</option>
                                             }
                                         }
                                     }
@@ -180,19 +203,19 @@
                             </div>
                             <div class="row">
                                 <img class="fit-small" src="~/Images/@pics[3]" alt="Fighter Picture" />
-                                <select class="form-control" asp-for='@Model["Pants"]'>
-                                    <option value="@null">None</option>
+                                <select class="form-control" name="pants">
+                                    <option value="-1">None</option>
                                     @foreach (Equipment e in Repository.SavedEquipment)
                                     {
                                         if (e.Type == "Pants")
                                         {
                                             if (e.Id == Model["Pants"].Id)
                                             {
-                                                <option value="@e" selected>@e.Name</option>
+                                                <option value="@e.Id" selected>@e.Name</option>
                                             }
                                             else
                                             {
-                                                <option value="@e">@e.Name</option>
+                                                <option value="@e.Id">@e.Name</option>
                                             }
                                         }
                                     }
@@ -207,19 +230,19 @@
                         <div class="col-2">
                             <div class="row">
                                 <img class="fit-small" src="~/Images/@pics[2]" alt="Fighter Picture" />
-                                <select class="form-control" asp-for='@Model["Gloves"]'>
-                                    <option value="@null">None</option>
+                                <select class="form-control" name="gloves">
+                                    <option value="-1">None</option>
                                     @foreach (Equipment e in Repository.SavedEquipment)
                                     {
                                         if (e.Type == "Gloves")
                                         {
                                             if (e.Id == Model["Gloves"].Id)
                                             {
-                                                <option value="@e" selected>@e.Name</option>
+                                                <option value="@e.Id" selected>@e.Name</option>
                                             }
                                             else
                                             {
-                                                <option value="@e">@e.Name</option>
+                                                <option value="@e.Id">@e.Name</option>
                                             }
                                         }
                                     }
@@ -227,19 +250,19 @@
                             </div>
                             <div class="row">
                                 <img class="fit-small" src="~/Images/@pics[6]" alt="Fighter Picture" />
-                                <select class="form-control" asp-for='@Model["Right Hand"]'>
-                                    <option value="@null">None</option>
+                                <select class="form-control" name="rHand">
+                                    <option value="-1">None</option>
                                     @foreach (Equipment e in Repository.SavedEquipment)
                                     {
                                         if (e.Type == "Right Hand")
                                         {
                                             if (e.Id == Model["Right Hand"].Id)
                                             {
-                                                <option value="@e" selected>@e.Name</option>
+                                                <option value="@e.Id" selected>@e.Name</option>
                                             }
                                             else
                                             {
-                                                <option value="@e">@e.Name</option>
+                                                <option value="@e.Id">@e.Name</option>
                                             }
                                         }
                                     }
@@ -247,19 +270,19 @@
                             </div>
                             <div class="row">
                                 <img class="fit-small" src="~/Images/@pics[5]" alt="Fighter Picture" />
-                                <select class="form-control" asp-for='@Model["Ring"]'>
-                                    <option value="@null">None</option>
+                                <select class="form-control" name="ring">
+                                    <option value="-1">None</option>
                                     @foreach (Equipment e in Repository.SavedEquipment)
                                     {
                                         if (e.Type == "Ring")
                                         {
                                             if (e.Id == Model["Ring"].Id)
                                             {
-                                                <option value="@e" selected>@e.Name</option>
+                                                <option value="@e.Id" selected>@e.Name</option>
                                             }
                                             else
                                             {
-                                                <option value="@e">@e.Name</option>
+                                                <option value="@e.Id">@e.Name</option>
                                             }
                                         }
                                     }
@@ -272,19 +295,19 @@
                         <div class="col-5"></div>
                         <div class="col-2">
                             <img class="fit" src="~/Images/@pics[4]" alt="Fighter Picture" />
-                            <select class="form-control" asp-for='@Model["Shoes"]'>
-                                <option value="@null">None</option>
+                            <select class="form-control" name="shoes">
+                                <option value="-1">None</option>
                                 @foreach (Equipment e in Repository.SavedEquipment)
                                 {
                                     if (e.Type == "Shoes")
                                     {
                                         if (e.Id == Model["Shoes"].Id)
                                         {
-                                            <option value="@e" selected>@e.Name</option>
+                                            <option value="@e.Id" selected>@e.Name</option>
                                         }
                                         else
                                         {
-                                            <option value="@e">@e.Name</option>
+                                            <option value="@e.Id">@e.Name</option>
                                         }
                                     }
                                 }

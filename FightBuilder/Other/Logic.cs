@@ -25,7 +25,7 @@ namespace FightBuilder.Other
                 if (e.Id == id)
                     return e;
             }
-            return null;
+            return blankEquipment;
         }
 
         public static Fighter GetFighterById(int id)
@@ -85,6 +85,18 @@ namespace FightBuilder.Other
             }
             copy.Wins = original.Wins;
             copy.Losses = original.Losses;
+        }
+
+        public static void UpdateFighters()
+        {
+            foreach (Fighter f in Repository.SavedFighters)
+            {
+                for (int i = 0; i < TypeValidation.Count(); i++)
+                {
+                    if (f[TypeValidation[i]].Type != TypeValidation[i])
+                        f[TypeValidation[i]] = blankEquipment;
+                }
+            }
         }
 
         public static string GeneratePicColor(string color)

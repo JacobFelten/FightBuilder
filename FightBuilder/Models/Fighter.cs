@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FightBuilder.Other;
+using System.ComponentModel.DataAnnotations;
 
 namespace FightBuilder.Models
 {
@@ -20,6 +21,8 @@ namespace FightBuilder.Models
         }
 
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Please enter a name for your fighter.")]
         public string Name { get; set; }
         public string Description { get; set; }
         public string Color
