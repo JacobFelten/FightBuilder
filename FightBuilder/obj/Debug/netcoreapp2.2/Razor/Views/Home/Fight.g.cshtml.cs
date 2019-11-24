@@ -24,12 +24,12 @@ using FightBuilder.Models;
 #line default
 #line hidden
 #line 3 "C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilder\Views\_ViewImports.cshtml"
-using FightBuilder.Other;
+using FightBuilder.Repositories;
 
 #line default
 #line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f5af98d6f5fce89669efc4a88f7fd47a9f451fc9", @"/Views/Home/Fight.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"be1c6d1dbec6c5e752624ee5eb9cda19d9e77711", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6a1f99e82ff4933a4c614c8d0b0b653bb025b946", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Fight : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

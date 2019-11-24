@@ -4,25 +4,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using FightBuilder.Models;
 
-namespace FightBuilder.Other
+namespace FightBuilder.Repositories
 {
-    public static class Repository
+    public class FakeRepository : IRepository
     {
         private static List<Equipment> savedEquipment = new List<Equipment>();
         private static List<Fighter> savedFighters = new List<Fighter>();
 
-        static Repository()
+        static FakeRepository()
         {
             AddTestData();
         }
 
 
-        public static List<Equipment> SavedEquipment
+        public List<Equipment> Equipment
         {
             get { return savedEquipment; }
         }
 
-        public static List<Fighter> SavedFighters
+        public List<Fighter> Fighters
         {
             get { return savedFighters; }
         }

@@ -3,12 +3,16 @@
 @{
     ViewData["Title"] = "Build a Figher";
     //{ "Head", "Chest", "Gloves", "Pants", "Shoes", "Ring", "Right Hand", "Left Hand" }
+
+    Repository repo = new Repository();
+    Logic logic = new Logic(repo);
+
     string hidden = "hidden";
     if ((ViewBag.EquipmentDuplicate ?? "") != "")
     {
         hidden = "";
     }
-    string pic = Logic.GenerateFighterPic(Model);
+    string pic = logic.GenerateFighterPic(Model);
     string[] pics = new string[Logic.TypeValidation.Count()];
     for (int i = 0; i < pics.Count(); i++)
     {
@@ -32,7 +36,7 @@
         }
         else
         {
-            pics[i] = Logic.GenerateEquipmentPic(Model[Logic.TypeValidation[i]]);
+            pics[i] = logic.GenerateEquipmentPic(Model[Logic.TypeValidation[i]]);
         }
     }
 
@@ -55,7 +59,7 @@
             <div class="col-1"></div>
             <div class="col-4 form-group">
                 <select class="form-control" name="id">
-                    @foreach (Fighter f in Repository.SavedFighters)
+                    @foreach (Fighter f in repo.Fighters)
                     {
                         <option value="@f.Id">@f.Name</option>
                     }
@@ -140,7 +144,7 @@
                             <img class="fit" src="~/Images/@pics[0]" alt="Fighter Picture" />
                             <select class="form-control" name="head">
                                 <option value="-1">None</option>
-                                @foreach (Equipment e in Repository.SavedEquipment)
+                                @foreach (Equipment e in repo.Equipment)
                                 {
                                     if (e.Type == "Head")
                                     {
@@ -165,7 +169,7 @@
                                 <img class="fit-small" src="~/Images/@pics[1]" alt="Fighter Picture" />
                                 <select class="form-control" name="chest">
                                     <option value="-1">None</option>
-                                    @foreach (Equipment e in Repository.SavedEquipment)
+                                    @foreach (Equipment e in repo.Equipment)
                                     {
                                         if (e.Type == "Chest")
                                         {
@@ -185,7 +189,7 @@
                                 <img class="fit-small" src="~/Images/@pics[7]" alt="Fighter Picture" />
                                 <select class="form-control" name="lHand">
                                     <option value="-1">None</option>
-                                    @foreach (Equipment e in Repository.SavedEquipment)
+                                    @foreach (Equipment e in repo.Equipment)
                                     {
                                         if (e.Type == "Left Hand")
                                         {
@@ -205,7 +209,7 @@
                                 <img class="fit-small" src="~/Images/@pics[3]" alt="Fighter Picture" />
                                 <select class="form-control" name="pants">
                                     <option value="-1">None</option>
-                                    @foreach (Equipment e in Repository.SavedEquipment)
+                                    @foreach (Equipment e in repo.Equipment)
                                     {
                                         if (e.Type == "Pants")
                                         {
@@ -232,7 +236,7 @@
                                 <img class="fit-small" src="~/Images/@pics[2]" alt="Fighter Picture" />
                                 <select class="form-control" name="gloves">
                                     <option value="-1">None</option>
-                                    @foreach (Equipment e in Repository.SavedEquipment)
+                                    @foreach (Equipment e in repo.Equipment)
                                     {
                                         if (e.Type == "Gloves")
                                         {
@@ -252,7 +256,7 @@
                                 <img class="fit-small" src="~/Images/@pics[6]" alt="Fighter Picture" />
                                 <select class="form-control" name="rHand">
                                     <option value="-1">None</option>
-                                    @foreach (Equipment e in Repository.SavedEquipment)
+                                    @foreach (Equipment e in repo.Equipment)
                                     {
                                         if (e.Type == "Right Hand")
                                         {
@@ -272,7 +276,7 @@
                                 <img class="fit-small" src="~/Images/@pics[5]" alt="Fighter Picture" />
                                 <select class="form-control" name="ring">
                                     <option value="-1">None</option>
-                                    @foreach (Equipment e in Repository.SavedEquipment)
+                                    @foreach (Equipment e in repo.Equipment)
                                     {
                                         if (e.Type == "Ring")
                                         {
@@ -297,7 +301,7 @@
                             <img class="fit" src="~/Images/@pics[4]" alt="Fighter Picture" />
                             <select class="form-control" name="shoes">
                                 <option value="-1">None</option>
-                                @foreach (Equipment e in Repository.SavedEquipment)
+                                @foreach (Equipment e in repo.Equipment)
                                 {
                                     if (e.Type == "Shoes")
                                     {

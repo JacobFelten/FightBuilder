@@ -3,13 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using FightBuilder.Other;
+using FightBuilder.Repositories;
 using FightBuilder.Models;
 
 namespace FightBuilder.Controllers
 {
     public class FighterController : Controller
     {
+        IRepository repo;
+        Logic logic;
+
+        public FighterController(IRepository repository)
+        {
+            repo = repository;
+            logic = new Logic(repository);
+        }
+
         public IActionResult Index()
         {
             return View(Logic.blankFighter);
@@ -20,21 +29,21 @@ namespace FightBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
-                fighter["Head"] = Logic.GetEquipmentById(head);
-                fighter["Chest"] = Logic.GetEquipmentById(chest);
-                fighter["Gloves"] = Logic.GetEquipmentById(gloves);
-                fighter["Pants"] = Logic.GetEquipmentById(pants);
-                fighter["Shoes"] = Logic.GetEquipmentById(shoes);
-                fighter["Ring"] = Logic.GetEquipmentById(ring);
-                fighter["Right Hand"] = Logic.GetEquipmentById(rHand);
-                fighter["Left Hand"] = Logic.GetEquipmentById(lHand);
+                fighter["Head"] = logic.GetEquipmentById(head);
+                fighter["Chest"] = logic.GetEquipmentById(chest);
+                fighter["Gloves"] = logic.GetEquipmentById(gloves);
+                fighter["Pants"] = logic.GetEquipmentById(pants);
+                fighter["Shoes"] = logic.GetEquipmentById(shoes);
+                fighter["Ring"] = logic.GetEquipmentById(ring);
+                fighter["Right Hand"] = logic.GetEquipmentById(rHand);
+                fighter["Left Hand"] = logic.GetEquipmentById(lHand);
 
                 if (fighter.Id == 0)
                 {
-                    if (!Logic.FighterExists(fighter.Name))
+                    if (!logic.FighterExists(fighter.Name))
                     {
-                        fighter.Id = Repository.SavedFighters.Count + 1;
-                        Repository.SavedFighters.Add(fighter);
+                        fighter.Id = repo.Fighters.Count + 1;
+                        repo.Fighters.Add(fighter);
                         ViewBag.EquipmentStatus = "New Fighter Saved!";
                     }
                     else
@@ -44,8 +53,8 @@ namespace FightBuilder.Controllers
                 }
                 else
                 {
-                    Fighter f = Logic.GetFighterById(fighter.Id);
-                    Logic.CopyFighter(fighter, f);
+                    Fighter f = logic.GetFighterById(fighter.Id);
+                    logic.CopyFighter(fighter, f);
                     ViewBag.EquipmentStatus = "Fighter Saved!";
                 }
             }
@@ -56,7 +65,7 @@ namespace FightBuilder.Controllers
         public IActionResult Edit(int id)
         {
             if (id != 0)
-                return View("Index", Logic.GetFighterById(id));
+                return View("Index", logic.GetFighterById(id));
             return RedirectToAction("Index");
         }
     }

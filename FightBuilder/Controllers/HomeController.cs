@@ -4,12 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FightBuilder.Models;
-using FightBuilder.Other;
+using FightBuilder.Repositories;
 
 namespace FightBuilder.Controllers
 {
     public class HomeController : Controller
     {
+        IRepository repo;
+
+        public HomeController(IRepository repository)
+        {
+            repo = repository;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -32,7 +39,7 @@ namespace FightBuilder.Controllers
 
         public IActionResult DataTables()
         {
-            return View(Repository.SavedFighters);
+            return View(repo.Fighters);
         }
     }
 }

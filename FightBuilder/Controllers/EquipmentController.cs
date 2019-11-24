@@ -4,12 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FightBuilder.Models;
-using FightBuilder.Other;
+using FightBuilder.Repositories;
 
 namespace FightBuilder.Controllers
 {
     public class EquipmentController : Controller
     {
+        IRepository repo;
+        Logic logic;
+
+        public EquipmentController(IRepository repository)
+        {
+            repo = repository;
+            logic = new Logic(repository);
+        }
+
         public IActionResult Index()
         {
             return View(Logic.blankEquipment);
@@ -22,10 +31,10 @@ namespace FightBuilder.Controllers
             {
                 if (equipment.Id == 0)
                 {
-                    if (!Logic.EquipmentExists(equipment.Name))
+                    if (!logic.EquipmentExists(equipment.Name))
                     {
-                        equipment.Id = Repository.SavedEquipment.Count + 1;
-                        Repository.SavedEquipment.Add(equipment);
+                        equipment.Id = repo.Equipment.Count + 1;
+                        repo.Equipment.Add(equipment);
                         ViewBag.EquipmentStatus = "New Equipment Saved!";
                     }
                     else
@@ -35,9 +44,9 @@ namespace FightBuilder.Controllers
                 }
                 else
                 {
-                    Equipment e = Logic.GetEquipmentById(equipment.Id);
-                    Logic.CopyEquipment(equipment, e);
-                    Logic.UpdateFighters();
+                    Equipment e = logic.GetEquipmentById(equipment.Id);
+                    logic.CopyEquipment(equipment, e);
+                    logic.UpdateFighters();
                     ViewBag.EquipmentStatus = "Equipment Saved!";
                 }
             }
@@ -48,7 +57,7 @@ namespace FightBuilder.Controllers
         public IActionResult Edit(int id)
         {
             if (id != 0)
-                return View("Index", Logic.GetEquipmentById(id));
+                return View("Index", logic.GetEquipmentById(id));
             return RedirectToAction("Index");
         }
     }

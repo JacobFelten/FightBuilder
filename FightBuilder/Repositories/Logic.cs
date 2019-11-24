@@ -4,10 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using FightBuilder.Models;
 
-namespace FightBuilder.Other
+namespace FightBuilder.Repositories
 {
-    public static class Logic
+    public class Logic
     {
+        IRepository repo;
+
+        public Logic(IRepository repository)
+        {
+            repo = repository;
+        }
+
         public static string[] TypeValidation { get; } = 
             { "Head", "Chest", "Gloves", "Pants", "Shoes", "Ring", "Right Hand", "Left Hand" };
 
@@ -18,9 +25,9 @@ namespace FightBuilder.Other
 
         public static Fighter blankFighter = new Fighter();
 
-        public static Equipment GetEquipmentById(int id)
+        public Equipment GetEquipmentById(int id)
         {
-            foreach (Equipment e in Repository.SavedEquipment)
+            foreach (Equipment e in repo.Equipment)
             {
                 if (e.Id == id)
                     return e;
@@ -28,9 +35,9 @@ namespace FightBuilder.Other
             return blankEquipment;
         }
 
-        public static Fighter GetFighterById(int id)
+        public Fighter GetFighterById(int id)
         {
-            foreach (Fighter f in Repository.SavedFighters)
+            foreach (Fighter f in repo.Fighters)
             {
                 if (f.Id == id)
                     return f;
@@ -38,9 +45,9 @@ namespace FightBuilder.Other
             return null;
         }
 
-        public static bool EquipmentExists(string name)
+        public bool EquipmentExists(string name)
         {
-            foreach (Equipment e in Repository.SavedEquipment)
+            foreach (Equipment e in repo.Equipment)
             {
                 if (e.Name == name)
                     return true;
@@ -48,9 +55,9 @@ namespace FightBuilder.Other
             return false;
         }
 
-        public static bool FighterExists(string name)
+        public bool FighterExists(string name)
         {
-            foreach (Fighter f in Repository.SavedFighters)
+            foreach (Fighter f in repo.Fighters)
             {
                 if (f.Name == name)
                     return true;
@@ -58,7 +65,7 @@ namespace FightBuilder.Other
             return false;
         }
 
-        public static void CopyEquipment(Equipment original, Equipment copy)
+        public void CopyEquipment(Equipment original, Equipment copy)
         {
             copy.Id = original.Id;
             copy.Name = original.Name;
@@ -73,7 +80,7 @@ namespace FightBuilder.Other
             copy.FireDef = original.FireDef;
         }
 
-        public static void CopyFighter(Fighter original, Fighter copy)
+        public void CopyFighter(Fighter original, Fighter copy)
         {
             copy.Id = original.Id;
             copy.Name = original.Name;
@@ -87,9 +94,9 @@ namespace FightBuilder.Other
             copy.Losses = original.Losses;
         }
 
-        public static void UpdateFighters()
+        public void UpdateFighters()
         {
-            foreach (Fighter f in Repository.SavedFighters)
+            foreach (Fighter f in repo.Fighters)
             {
                 for (int i = 0; i < TypeValidation.Count(); i++)
                 {
@@ -99,14 +106,14 @@ namespace FightBuilder.Other
             }
         }
 
-        public static string GeneratePicColor(string color)
+        public string GeneratePicColor(string color)
         {
             if (color == "Sky Blue")
                 return "SkyBlue";
             return color;
         }
 
-        public static string GenerateEquipmentPic(Equipment e)
+        public string GenerateEquipmentPic(Equipment e)
         {
             string pic = "";
 
@@ -120,7 +127,7 @@ namespace FightBuilder.Other
             return pic + GeneratePicColor(e.Color) + ".jpg";
         }
 
-        public static string GenerateFighterPic(Fighter f)
+        public string GenerateFighterPic(Fighter f)
         {
             return "Fighter" + GeneratePicColor(f.Color) + ".jpg";
         }

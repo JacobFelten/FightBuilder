@@ -5,7 +5,10 @@
     //"head", "chest", "gloves", "pants", "shoes", "ring", "rhand", "lhand"
     //"black", "white", "red", "orange", "yellow", "green", "skyBlue", "blue", "purple", "pink"
 
-    string pic = Logic.GenerateEquipmentPic(Model);
+    Repository repo = new Repository();
+    Logic logic = new Logic(repo);
+
+    string pic = logic.GenerateEquipmentPic(Model);
     string hidden = "hidden";
     if (Model == Logic.blankEquipment)
     {
@@ -32,7 +35,7 @@
             <div class="col-1"></div>
             <div class="col-4 form-group">
                 <select class="form-control" name="id">
-                    @foreach (Equipment e in Repository.SavedEquipment)
+                    @foreach (Equipment e in repo.Equipment)
                     {
                         <option value="@e.Id">@e.Name</option>
                     }

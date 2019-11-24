@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FightBuilder.Other;
+using FightBuilder.Repositories;
 using System.ComponentModel.DataAnnotations;
 
 namespace FightBuilder.Models
