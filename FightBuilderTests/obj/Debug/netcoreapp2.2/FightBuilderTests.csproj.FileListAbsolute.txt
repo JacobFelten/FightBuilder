@@ -12,3 +12,8 @@ C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilder
 C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilderTests\obj\Debug\netcoreapp2.2\FightBuilderTests.AssemblyInfo.cs
 C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilderTests\obj\Debug\netcoreapp2.2\FightBuilderTests.dll
 C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilderTests\obj\Debug\netcoreapp2.2\FightBuilderTests.pdb
+C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilderTests\bin\Debug\netcoreapp2.2\FightBuilder.Views.dll
+C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilderTests\bin\Debug\netcoreapp2.2\FightBuilder.Views.pdb
+C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilderTests\bin\Debug\netcoreapp2.2\FightBuilder.dll
+C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilderTests\bin\Debug\netcoreapp2.2\FightBuilder.pdb
+C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilderTests\obj\Debug\netcoreapp2.2\FightBuilderTests.csproj.CopyComplete

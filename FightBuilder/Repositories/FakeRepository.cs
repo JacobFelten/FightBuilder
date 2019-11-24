@@ -13,7 +13,8 @@ namespace FightBuilder.Repositories
 
         static FakeRepository()
         {
-            AddTestData();
+            if (savedEquipment.Count == 0 && savedFighters.Count == 0)
+                AddTestData();
         }
 
 
@@ -34,6 +35,7 @@ namespace FightBuilder.Repositories
                 Id = 1,
                 Type = "Head",
                 Name = "Helmet",
+                Description = "Strong head piece.",
                 Color = "Red",
                 PhysDam = 10,
                 MagDam = 10,
@@ -43,12 +45,52 @@ namespace FightBuilder.Repositories
                 MagDef = 10
             });
 
+            savedEquipment.Add(new Equipment
+            {
+                Id = 2,
+                Type = "Left Hand",
+                Name = "Shield",
+                Description = "Good Shield",
+                Color = "Sky Blue",
+                PhysDam = 0,
+                MagDam = 0,
+                FireDam = 0,
+                PhysDef = 100,
+                FireDef = 20,
+                MagDef = 20
+            });
+
+            savedEquipment.Add(new Equipment
+            {
+                Id = 3,
+                Type = "Right Hand",
+                Name = "Sword",
+                Description = "Cool Saber",
+                Color = "Green",
+                PhysDam = 175,
+                MagDam = 0,
+                FireDam = 0,
+                PhysDef = 0,
+                FireDef = 0,
+                MagDef = 0
+            });
+
             savedFighters.Add(new Fighter
             {
                 Id = 1,
                 Name = "Bob",
+                Description = "Skilled warrior.",
                 Color = "Blue",
-                ["Head"] = savedEquipment[0]
+                ["Head"] = savedEquipment[0],
+                Wins = 5,
+                Losses = 2
+            });
+
+            savedFighters.Add(new Fighter
+            {
+                Id = 2,
+                Name = "Billy",
+                Color = "Black"
             });
         }
     }
