@@ -92,5 +92,45 @@ namespace FightBuilder.Repositories
                 Color = "Black"
             });
         }
+        
+        public void AddTestData2()
+        {
+            savedEquipment.Add(new Equipment
+            {
+                Id = 4,
+                Type = "Right Hand",
+                Name = "Sword Attack",
+                Description = "Attack",
+                Color = "Red",
+                PhysDam = 50,
+                MagDam = 50,
+                FireDam = 50,
+                PhysDef = 50,
+                FireDef = 50,
+                MagDef = 50
+            });
+
+            savedEquipment.Add(new Equipment
+            {
+                Id = 5,
+                Type = "Left Hand",
+                Name = "Shield Defend",
+                Description = "Defend",
+                Color = "Blue",
+                PhysDam = 40,
+                MagDam = 40,
+                FireDam = 40,
+                PhysDef = 40,
+                FireDef = 40,
+                MagDef = 40
+            });
+
+            savedFighters.Add(new Fighter
+            {
+                Id = 3,
+                Name = "Jessica",
+                Color = "Pink"
+            });
+        }
     }
 }

@@ -204,5 +204,129 @@ namespace FightBuilderTests
             Assert.Equal("FighterBlue.jpg", f1);
             Assert.Equal("FighterBlack.jpg", f2);
         }
+
+        [Fact]
+        public void CalculateFireDamageTest()
+        {
+            //Arrange
+            var repo = new FakeRepository();
+            var logic = new Logic(repo);
+            repo.AddTestData2();
+            Fighter f1 = repo.Fighters[0];
+            f1["Head"] = Logic.blankEquipment;
+            f1["Right Hand"] = repo.Equipment[3];
+            Fighter f2 = repo.Fighters[1];
+            f2["Left Hand"] = repo.Equipment[4];
+            int f1FireDamage;
+            int f2FireDamage;
+
+            //Act
+            f1FireDamage = logic.CalculateFireDamage(f1, f2);
+            f2FireDamage = logic.CalculateFireDamage(f2, f1);
+
+            //Assert
+            Assert.Equal(0, f1FireDamage);
+            Assert.Equal(10, f2FireDamage);
+        }
+
+        [Fact]
+        public void CalculateMagicDamageTest()
+        {
+            //Arrange
+            var repo = new FakeRepository();
+            var logic = new Logic(repo);
+            repo.AddTestData2();
+            Fighter f1 = repo.Fighters[0];
+            f1["Head"] = Logic.blankEquipment;
+            f1["Right Hand"] = repo.Equipment[3];
+            Fighter f2 = repo.Fighters[1];
+            f2["Left Hand"] = repo.Equipment[4];
+            int f1MagicDamage;
+            int f2MagicDamage;
+
+            //Act
+            f1MagicDamage = logic.CalculateMagicDamage(f1, f2);
+            f2MagicDamage = logic.CalculateMagicDamage(f2, f1);
+
+            //Assert
+            Assert.Equal(0, f1MagicDamage);
+            Assert.Equal(10, f2MagicDamage);
+        }
+
+        [Fact]
+        public void CalculatePhysicalDamageTest()
+        {
+            //Arrange
+            var repo = new FakeRepository();
+            var logic = new Logic(repo);
+            repo.AddTestData2();
+            Fighter f1 = repo.Fighters[0];
+            f1["Head"] = Logic.blankEquipment;
+            f1["Right Hand"] = repo.Equipment[3];
+            Fighter f2 = repo.Fighters[1];
+            f2["Left Hand"] = repo.Equipment[4];
+            int f1PhysicalDamage;
+            int f2PhysicalDamage;
+
+            //Act
+            f1PhysicalDamage = logic.CalculatePhysicalDamage(f1, f2);
+            f2PhysicalDamage = logic.CalculatePhysicalDamage(f2, f1);
+
+            //Assert
+            Assert.Equal(0, f1PhysicalDamage);
+            Assert.Equal(10, f2PhysicalDamage);
+        }
+
+        [Fact]
+        public void CalculateTotalDamageTest()
+        {
+            //Arrange
+            var repo = new FakeRepository();
+            var logic = new Logic(repo);
+            repo.AddTestData2();
+            Fighter f1 = repo.Fighters[0];
+            f1["Head"] = Logic.blankEquipment;
+            f1["Right Hand"] = repo.Equipment[3];
+            Fighter f2 = repo.Fighters[1];
+            f2["Left Hand"] = repo.Equipment[4];
+            int f1TotalDamage;
+            int f2TotalDamage;
+
+            //Act
+            f1TotalDamage = logic.CalculateTotalDamage(f1, f2);
+            f2TotalDamage = logic.CalculateTotalDamage(f2, f1);
+
+            //Assert
+            Assert.Equal(0, f1TotalDamage);
+            Assert.Equal(30, f2TotalDamage);
+        }
+
+        [Fact]
+        public void FightTest()
+        {
+            //Arrange
+            var repo = new FakeRepository();
+            var logic = new Logic(repo);
+            repo.AddTestData2();
+            Fighter f1 = repo.Fighters[0];
+            f1["Head"] = Logic.blankEquipment;
+            f1["Right Hand"] = repo.Equipment[3];
+            Fighter f2 = repo.Fighters[1];
+            f2["Left Hand"] = repo.Equipment[4];
+            Fighter f3 = repo.Fighters[2];
+            f3["Left Hand"] = repo.Equipment[4];
+
+            //Act
+            logic.Fight(f1, f2);
+            logic.Fight(f3, f2);
+
+            //Assert
+            Assert.Equal(6, f1.Wins);
+            Assert.Equal(2, f1.Losses);
+            Assert.Equal(0, f2.Wins);
+            Assert.Equal(2, f2.Losses);
+            Assert.Equal(1, f3.Wins);
+            Assert.Equal(0, f3.Losses);
+        }
     }
 }
