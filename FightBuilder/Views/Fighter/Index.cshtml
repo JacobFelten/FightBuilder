@@ -5,14 +5,13 @@
     //{ "Head", "Chest", "Gloves", "Pants", "Shoes", "Ring", "Right Hand", "Left Hand" }
 
     Repository repo = new Repository();
-    Logic logic = new Logic(repo);
 
     string hidden = "hidden";
     if ((ViewBag.EquipmentDuplicate ?? "") != "")
     {
         hidden = "";
     }
-    string pic = logic.GenerateFighterPic(Model);
+    string pic = Logic.GenerateFighterPic(Model);
     string[] pics = new string[Logic.TypeValidation.Count()];
     for (int i = 0; i < pics.Count(); i++)
     {
@@ -36,7 +35,7 @@
         }
         else
         {
-            pics[i] = logic.GenerateEquipmentPic(Model[Logic.TypeValidation[i]]);
+            pics[i] = Logic.GenerateEquipmentPic(Model[Logic.TypeValidation[i]]);
         }
     }
 

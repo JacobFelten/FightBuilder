@@ -6,9 +6,8 @@
     //"black", "white", "red", "orange", "yellow", "green", "skyBlue", "blue", "purple", "pink"
 
     Repository repo = new Repository();
-    Logic logic = new Logic(repo);
 
-    string pic = logic.GenerateEquipmentPic(Model);
+    string pic = Logic.GenerateEquipmentPic(Model);
     string hidden = "hidden";
     if (Model == Logic.blankEquipment)
     {

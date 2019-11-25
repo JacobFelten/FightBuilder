@@ -11,12 +11,10 @@ namespace FightBuilder.Controllers
     public class EquipmentController : Controller
     {
         IRepository repo;
-        Logic logic;
 
         public EquipmentController(IRepository repository)
         {
             repo = repository;
-            logic = new Logic(repository);
         }
 
         public IActionResult Index()
@@ -31,7 +29,7 @@ namespace FightBuilder.Controllers
             {
                 if (equipment.Id == 0)
                 {
-                    if (!logic.EquipmentExists(equipment.Name))
+                    if (!EquipmentExists(equipment.Name))
                     {
                         equipment.Id = repo.Equipment.Count + 1;
                         repo.Equipment.Add(equipment);
@@ -44,9 +42,9 @@ namespace FightBuilder.Controllers
                 }
                 else
                 {
-                    Equipment e = logic.GetEquipmentById(equipment.Id);
-                    logic.CopyEquipment(equipment, e);
-                    logic.UpdateFighters();
+                    Equipment e = GetEquipmentById(equipment.Id);
+                    Logic.CopyEquipment(equipment, e);
+                    UpdateFighters();
                     ViewBag.EquipmentStatus = "Equipment Saved!";
                 }
             }
@@ -57,8 +55,42 @@ namespace FightBuilder.Controllers
         public IActionResult Edit(int id)
         {
             if (id != 0)
-                return View("Index", logic.GetEquipmentById(id));
+                return View("Index", GetEquipmentById(id));
             return RedirectToAction("Index");
         }
+
+        #region Other Methods
+        private Equipment GetEquipmentById(int id)
+        {
+            foreach (Equipment e in repo.Equipment)
+            {
+                if (e.Id == id)
+                    return e;
+            }
+            return Logic.blankEquipment;
+        }
+
+        private bool EquipmentExists(string name)
+        {
+            foreach (Equipment e in repo.Equipment)
+            {
+                if (e.Name == name)
+                    return true;
+            }
+            return false;
+        }
+
+        private void UpdateFighters()
+        {
+            foreach (Fighter f in repo.Fighters)
+            {
+                for (int i = 0; i < Logic.TypeValidation.Count(); i++)
+                {
+                    if (f[Logic.TypeValidation[i]].Type != Logic.TypeValidation[i])
+                        f[Logic.TypeValidation[i]] = Logic.blankEquipment;
+                }
+            }
+        }
+        #endregion
     }
 }

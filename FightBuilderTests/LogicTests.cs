@@ -7,6 +7,7 @@ namespace FightBuilderTests
 {
     public class LogicTests
     {
+        /*
         [Fact]
         public void GetEquipmentByIdTest()
         {
@@ -78,17 +79,18 @@ namespace FightBuilderTests
             Assert.True(t);
             Assert.False(f);
         }
+        */
 
         [Fact]
         public void CopyEquipmentTest()
         {
             //Arrange
             var repo = new FakeRepository();
-            var logic = new Logic(repo);
+            AddTestData(repo);
             Equipment e = new Equipment();
 
             //Act
-            logic.CopyEquipment(repo.Equipment[0], e);
+            Logic.CopyEquipment(repo.Equipment[0], e);
 
             //Assert
             Assert.Equal(1, e.Id);
@@ -109,11 +111,11 @@ namespace FightBuilderTests
         {
             //Arrange
             var repo = new FakeRepository();
-            var logic = new Logic(repo);
+            AddTestData(repo);
             Fighter f = new Fighter();
 
             //Act
-            logic.CopyFighter(repo.Fighters[0], f);
+            Logic.CopyFighter(repo.Fighters[0], f);
 
             //Assert
             Assert.Equal(1, f.Id);
@@ -132,6 +134,7 @@ namespace FightBuilderTests
             Assert.Equal(2, f.Losses);
         }
 
+        /*
         [Fact]
         public void UpdateFightersTest()
         {
@@ -147,19 +150,18 @@ namespace FightBuilderTests
             Assert.Equal(Logic.blankEquipment, repo.Fighters[0]["Head"]);
             Assert.Equal(Logic.blankEquipment, repo.Fighters[0]["Chest"]);
         }
+        */
 
         [Fact]
         public void GeneratePicColorTest()
         {
             //Arrange
-            var repo = new FakeRepository();
-            var logic = new Logic(repo);
             string skyBlue;
             string green;
 
             //Act
-            skyBlue = logic.GeneratePicColor("Sky Blue");
-            green = logic.GeneratePicColor("Green");
+            skyBlue = Logic.GeneratePicColor("Sky Blue");
+            green = Logic.GeneratePicColor("Green");
 
             //Assert
             Assert.Equal("SkyBlue", skyBlue);
@@ -171,15 +173,15 @@ namespace FightBuilderTests
         {
             //Arrange
             var repo = new FakeRepository();
-            var logic = new Logic(repo);
+            AddTestData(repo);
             string e1;
             string e2;
             string e3;
 
             //Act
-            e1 = logic.GenerateEquipmentPic(repo.Equipment[0]);
-            e2 = logic.GenerateEquipmentPic(repo.Equipment[1]);
-            e3 = logic.GenerateEquipmentPic(repo.Equipment[2]);
+            e1 = Logic.GenerateEquipmentPic(repo.Equipment[0]);
+            e2 = Logic.GenerateEquipmentPic(repo.Equipment[1]);
+            e3 = Logic.GenerateEquipmentPic(repo.Equipment[2]);
 
             //Assert
             Assert.Equal("HeadRed.jpg", e1);
@@ -192,13 +194,13 @@ namespace FightBuilderTests
         {
             //Arrange
             var repo = new FakeRepository();
-            var logic = new Logic(repo);
+            AddTestData(repo);
             string f1;
             string f2;
 
             //Act
-            f1 = logic.GenerateFighterPic(repo.Fighters[0]);
-            f2 = logic.GenerateFighterPic(repo.Fighters[1]);
+            f1 = Logic.GenerateFighterPic(repo.Fighters[0]);
+            f2 = Logic.GenerateFighterPic(repo.Fighters[1]);
 
             //Assert
             Assert.Equal("FighterBlue.jpg", f1);
@@ -210,8 +212,8 @@ namespace FightBuilderTests
         {
             //Arrange
             var repo = new FakeRepository();
-            var logic = new Logic(repo);
-            repo.AddTestData2();
+            AddTestData(repo);
+            AddTestData2(repo);
             Fighter f1 = repo.Fighters[0];
             f1["Head"] = Logic.blankEquipment;
             f1["Right Hand"] = repo.Equipment[3];
@@ -221,8 +223,8 @@ namespace FightBuilderTests
             int f2FireDamage;
 
             //Act
-            f1FireDamage = logic.CalculateFireDamage(f1, f2);
-            f2FireDamage = logic.CalculateFireDamage(f2, f1);
+            f1FireDamage = Logic.CalculateFireDamage(f1, f2);
+            f2FireDamage = Logic.CalculateFireDamage(f2, f1);
 
             //Assert
             Assert.Equal(0, f1FireDamage);
@@ -234,8 +236,8 @@ namespace FightBuilderTests
         {
             //Arrange
             var repo = new FakeRepository();
-            var logic = new Logic(repo);
-            repo.AddTestData2();
+            AddTestData(repo);
+            AddTestData2(repo);
             Fighter f1 = repo.Fighters[0];
             f1["Head"] = Logic.blankEquipment;
             f1["Right Hand"] = repo.Equipment[3];
@@ -245,8 +247,8 @@ namespace FightBuilderTests
             int f2MagicDamage;
 
             //Act
-            f1MagicDamage = logic.CalculateMagicDamage(f1, f2);
-            f2MagicDamage = logic.CalculateMagicDamage(f2, f1);
+            f1MagicDamage = Logic.CalculateMagicDamage(f1, f2);
+            f2MagicDamage = Logic.CalculateMagicDamage(f2, f1);
 
             //Assert
             Assert.Equal(0, f1MagicDamage);
@@ -258,8 +260,8 @@ namespace FightBuilderTests
         {
             //Arrange
             var repo = new FakeRepository();
-            var logic = new Logic(repo);
-            repo.AddTestData2();
+            AddTestData(repo);
+            AddTestData2(repo);
             Fighter f1 = repo.Fighters[0];
             f1["Head"] = Logic.blankEquipment;
             f1["Right Hand"] = repo.Equipment[3];
@@ -269,8 +271,8 @@ namespace FightBuilderTests
             int f2PhysicalDamage;
 
             //Act
-            f1PhysicalDamage = logic.CalculatePhysicalDamage(f1, f2);
-            f2PhysicalDamage = logic.CalculatePhysicalDamage(f2, f1);
+            f1PhysicalDamage = Logic.CalculatePhysicalDamage(f1, f2);
+            f2PhysicalDamage = Logic.CalculatePhysicalDamage(f2, f1);
 
             //Assert
             Assert.Equal(0, f1PhysicalDamage);
@@ -282,8 +284,8 @@ namespace FightBuilderTests
         {
             //Arrange
             var repo = new FakeRepository();
-            var logic = new Logic(repo);
-            repo.AddTestData2();
+            AddTestData(repo);
+            AddTestData2(repo);
             Fighter f1 = repo.Fighters[0];
             f1["Head"] = Logic.blankEquipment;
             f1["Right Hand"] = repo.Equipment[3];
@@ -293,8 +295,8 @@ namespace FightBuilderTests
             int f2TotalDamage;
 
             //Act
-            f1TotalDamage = logic.CalculateTotalDamage(f1, f2);
-            f2TotalDamage = logic.CalculateTotalDamage(f2, f1);
+            f1TotalDamage = Logic.CalculateTotalDamage(f1, f2);
+            f2TotalDamage = Logic.CalculateTotalDamage(f2, f1);
 
             //Assert
             Assert.Equal(0, f1TotalDamage);
@@ -306,8 +308,8 @@ namespace FightBuilderTests
         {
             //Arrange
             var repo = new FakeRepository();
-            var logic = new Logic(repo);
-            repo.AddTestData2();
+            AddTestData(repo);
+            AddTestData2(repo);
             Fighter f1 = repo.Fighters[0];
             f1["Head"] = Logic.blankEquipment;
             f1["Right Hand"] = repo.Equipment[3];
@@ -317,8 +319,8 @@ namespace FightBuilderTests
             f3["Left Hand"] = repo.Equipment[4];
 
             //Act
-            logic.Fight(f1, f2);
-            logic.Fight(f3, f2);
+            Logic.Fight(f1, f2);
+            Logic.Fight(f3, f2);
 
             //Assert
             Assert.Equal(6, f1.Wins);
@@ -327,6 +329,112 @@ namespace FightBuilderTests
             Assert.Equal(2, f2.Losses);
             Assert.Equal(1, f3.Wins);
             Assert.Equal(0, f3.Losses);
+        }
+
+        private void AddTestData(FakeRepository repo)
+        {
+            repo.Equipment.Add(new Equipment
+            {
+                Id = 1,
+                Type = "Head",
+                Name = "Helmet",
+                Description = "Strong head piece.",
+                Color = "Red",
+                PhysDam = 10,
+                MagDam = 10,
+                FireDam = 10,
+                PhysDef = 10,
+                FireDef = 10,
+                MagDef = 10
+            });
+
+            repo.Equipment.Add(new Equipment
+            {
+                Id = 2,
+                Type = "Left Hand",
+                Name = "Shield",
+                Description = "Good Shield",
+                Color = "Sky Blue",
+                PhysDam = 0,
+                MagDam = 0,
+                FireDam = 0,
+                PhysDef = 100,
+                FireDef = 20,
+                MagDef = 20
+            });
+
+            repo.Equipment.Add(new Equipment
+            {
+                Id = 3,
+                Type = "Right Hand",
+                Name = "Sword",
+                Description = "Cool Saber",
+                Color = "Green",
+                PhysDam = 175,
+                MagDam = 0,
+                FireDam = 0,
+                PhysDef = 0,
+                FireDef = 0,
+                MagDef = 0
+            });
+
+            repo.Fighters.Add(new Fighter
+            {
+                Id = 1,
+                Name = "Bob",
+                Description = "Skilled warrior.",
+                Color = "Blue",
+                ["Head"] = repo.Equipment[0],
+                Wins = 5,
+                Losses = 2
+            });
+
+            repo.Fighters.Add(new Fighter
+            {
+                Id = 2,
+                Name = "Billy",
+                Color = "Black"
+            });
+        }
+
+        private void AddTestData2(FakeRepository repo)
+        {
+            repo.Equipment.Add(new Equipment
+            {
+                Id = 4,
+                Type = "Right Hand",
+                Name = "Sword Attack",
+                Description = "Attack",
+                Color = "Red",
+                PhysDam = 50,
+                MagDam = 50,
+                FireDam = 50,
+                PhysDef = 50,
+                FireDef = 50,
+                MagDef = 50
+            });
+
+            repo.Equipment.Add(new Equipment
+            {
+                Id = 5,
+                Type = "Left Hand",
+                Name = "Shield Defend",
+                Description = "Defend",
+                Color = "Blue",
+                PhysDam = 40,
+                MagDam = 40,
+                FireDam = 40,
+                PhysDef = 40,
+                FireDef = 40,
+                MagDef = 40
+            });
+
+            repo.Fighters.Add(new Fighter
+            {
+                Id = 3,
+                Name = "Jessica",
+                Color = "Pink"
+            });
         }
     }
 }

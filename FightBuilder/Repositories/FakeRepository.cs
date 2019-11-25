@@ -11,11 +11,12 @@ namespace FightBuilder.Repositories
         private List<Equipment> savedEquipment = new List<Equipment>();
         private List<Fighter> savedFighters = new List<Fighter>();
 
+        /*
         public FakeRepository()
         {
             AddTestData();
         }
-
+        */
 
         public List<Equipment> Equipment
         {
@@ -27,6 +28,7 @@ namespace FightBuilder.Repositories
             get { return savedFighters; }
         }
 
+        /*
         private void AddTestData()
         {
             savedEquipment.Add(new Equipment
@@ -132,5 +134,6 @@ namespace FightBuilder.Repositories
                 Color = "Pink"
             });
         }
+        */
     }
 }

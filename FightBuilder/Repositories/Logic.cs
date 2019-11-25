@@ -6,15 +6,8 @@ using FightBuilder.Models;
 
 namespace FightBuilder.Repositories
 {
-    public class Logic
+    public static class Logic
     {
-        IRepository repo;
-
-        public Logic(IRepository repository)
-        {
-            repo = repository;
-        }
-
         public static string[] TypeValidation { get; } = 
             { "Head", "Chest", "Gloves", "Pants", "Shoes", "Ring", "Right Hand", "Left Hand" };
 
@@ -25,6 +18,7 @@ namespace FightBuilder.Repositories
 
         public static Fighter blankFighter = new Fighter();
 
+        /*
         public Equipment GetEquipmentById(int id)
         {
             foreach (Equipment e in repo.Equipment)
@@ -64,8 +58,9 @@ namespace FightBuilder.Repositories
             }
             return false;
         }
+        */
 
-        public void CopyEquipment(Equipment original, Equipment copy)
+        public static void CopyEquipment(Equipment original, Equipment copy)
         {
             copy.Id = original.Id;
             copy.Name = original.Name;
@@ -80,7 +75,7 @@ namespace FightBuilder.Repositories
             copy.FireDef = original.FireDef;
         }
 
-        public void CopyFighter(Fighter original, Fighter copy)
+        public static void CopyFighter(Fighter original, Fighter copy)
         {
             copy.Id = original.Id;
             copy.Name = original.Name;
@@ -94,6 +89,7 @@ namespace FightBuilder.Repositories
             copy.Losses = original.Losses;
         }
 
+        /*
         public void UpdateFighters()
         {
             foreach (Fighter f in repo.Fighters)
@@ -105,15 +101,16 @@ namespace FightBuilder.Repositories
                 }
             }
         }
+        */
 
-        public string GeneratePicColor(string color)
+        public static string GeneratePicColor(string color)
         {
             if (color == "Sky Blue")
                 return "SkyBlue";
             return color;
         }
 
-        public string GenerateEquipmentPic(Equipment e)
+        public static string GenerateEquipmentPic(Equipment e)
         {
             string pic = "";
 
@@ -127,12 +124,12 @@ namespace FightBuilder.Repositories
             return pic + GeneratePicColor(e.Color) + ".jpg";
         }
 
-        public string GenerateFighterPic(Fighter f)
+        public static string GenerateFighterPic(Fighter f)
         {
             return "Fighter" + GeneratePicColor(f.Color) + ".jpg";
         }
 
-        public int CalculateFireDamage(Fighter f1, Fighter f2)
+        public static int CalculateFireDamage(Fighter f1, Fighter f2)
         {
             int f1FireDamage = f2.TotalFireDam - f1.TotalFireDef;
             if (f1FireDamage < 0)
@@ -140,7 +137,7 @@ namespace FightBuilder.Repositories
             return f1FireDamage;
         }
 
-        public int CalculateMagicDamage(Fighter f1, Fighter f2)
+        public static int CalculateMagicDamage(Fighter f1, Fighter f2)
         {
             int f1MagicDamage = f2.TotalMagDam - f1.TotalMagDef;
             if (f1MagicDamage < 0)
@@ -148,7 +145,7 @@ namespace FightBuilder.Repositories
             return f1MagicDamage;
         }
 
-        public int CalculatePhysicalDamage(Fighter f1, Fighter f2)
+        public static int CalculatePhysicalDamage(Fighter f1, Fighter f2)
         {
             int f1PhysicalDamage = f2.TotalPhysDam - f1.TotalPhysDef;
             if (f1PhysicalDamage < 0)
@@ -156,14 +153,14 @@ namespace FightBuilder.Repositories
             return f1PhysicalDamage;
         }
 
-        public int CalculateTotalDamage(Fighter f1, Fighter f2)
+        public static int CalculateTotalDamage(Fighter f1, Fighter f2)
         {
             return CalculateFireDamage(f1, f2) +
                 CalculateMagicDamage(f1, f2) +
                 CalculatePhysicalDamage(f1, f2);
         }
 
-        public void Fight(Fighter attacker, Fighter defender)
+        public static void Fight(Fighter attacker, Fighter defender)
         {
             int attackerTotalDamage = CalculateTotalDamage(attacker, defender);
             int defenderTotalDamage = CalculateTotalDamage(defender, attacker);
