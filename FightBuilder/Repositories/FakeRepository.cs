@@ -8,13 +8,12 @@ namespace FightBuilder.Repositories
 {
     public class FakeRepository : IRepository
     {
-        private static List<Equipment> savedEquipment = new List<Equipment>();
-        private static List<Fighter> savedFighters = new List<Fighter>();
+        private List<Equipment> savedEquipment = new List<Equipment>();
+        private List<Fighter> savedFighters = new List<Fighter>();
 
-        static FakeRepository()
+        public FakeRepository()
         {
-            if (savedEquipment.Count == 0 && savedFighters.Count == 0)
-                AddTestData();
+            AddTestData();
         }
 
 
@@ -28,7 +27,7 @@ namespace FightBuilder.Repositories
             get { return savedFighters; }
         }
 
-        private static void AddTestData()
+        private void AddTestData()
         {
             savedEquipment.Add(new Equipment
             {
