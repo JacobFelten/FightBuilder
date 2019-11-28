@@ -19,43 +19,55 @@ namespace FightBuilder.Controllers
 
         public IActionResult Index()
         {
-            return View(Logic.blankEquipment);
+            EquipmentView equipmentView = new EquipmentView
+            {
+                Equipment = Logic.blankEquipment,
+                AllEquipment = repo.Equipment
+            };
+            return View(equipmentView);
         }
         
         [HttpPost]
-        public IActionResult Save(Equipment equipment)
+        public IActionResult Save(EquipmentView equipmentView)
         {
             if (ModelState.IsValid)
             {
-                if (equipment.Id == 0)
+                if (equipmentView.Equipment.EquipmentID == 0)
                 {
-                    if (!EquipmentExists(equipment.Name))
+                    if (!EquipmentExists(equipmentView.Equipment.Name))
                     {
-                        equipment.Id = repo.Equipment.Count + 1;
-                        repo.Equipment.Add(equipment);
+                        repo.AddEquipment(equipmentView.Equipment);
                         ViewBag.EquipmentStatus = "New Equipment Saved!";
                     }
                     else
                     {
-                        ViewBag.EquipmentDuplicate = "You've already created equipment named " + equipment.Name + ".";
+                        ViewBag.EquipmentDuplicate = "You've already created equipment named " + equipmentView.Equipment.Name + ".";
                     }
                 }
                 else
                 {
-                    Equipment e = GetEquipmentById(equipment.Id);
-                    Logic.CopyEquipment(equipment, e);
+                    Equipment e = GetEquipmentById(equipmentView.Equipment.EquipmentID);
+                    Logic.CopyEquipment(equipmentView.Equipment, e);
                     UpdateFighters();
                     ViewBag.EquipmentStatus = "Equipment Saved!";
                 }
             }
-            return View("Index", equipment);
+            equipmentView.AllEquipment = repo.Equipment;
+            return View("Index", equipmentView);
         }
 
         [HttpPost]
         public IActionResult Edit(int id)
         {
             if (id != 0)
-                return View("Index", GetEquipmentById(id));
+            {
+                EquipmentView equipmentView = new EquipmentView
+                {
+                    Equipment = GetEquipmentById(id),
+                    AllEquipment = repo.Equipment
+                };
+                return View("Index", equipmentView);
+            }
             return RedirectToAction("Index");
         }
 
@@ -64,7 +76,7 @@ namespace FightBuilder.Controllers
         {
             foreach (Equipment e in repo.Equipment)
             {
-                if (e.Id == id)
+                if (e.EquipmentID == id)
                     return e;
             }
             return Logic.blankEquipment;

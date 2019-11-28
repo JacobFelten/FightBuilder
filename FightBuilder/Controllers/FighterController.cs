@@ -19,51 +19,66 @@ namespace FightBuilder.Controllers
 
         public IActionResult Index()
         {
-            return View(Logic.blankFighter);
+            FighterView fighterView = new FighterView
+            {
+                Fighter = Logic.blankFighter,
+                AllEquipment = repo.Equipment,
+                AllFighters = repo.Fighters
+            };
+            return View(fighterView);
         }
 
         [HttpPost]
-        public IActionResult Save(Fighter fighter, int head, int chest, int gloves, int pants, int shoes, int ring, int rHand, int lHand)
+        public IActionResult Save(FighterView fighterView, int head, int chest, int gloves, int pants, int shoes, int ring, int rHand, int lHand)
         {
             if (ModelState.IsValid)
             {
-                fighter["Head"] = GetEquipmentById(head);
-                fighter["Chest"] = GetEquipmentById(chest);
-                fighter["Gloves"] = GetEquipmentById(gloves);
-                fighter["Pants"] = GetEquipmentById(pants);
-                fighter["Shoes"] = GetEquipmentById(shoes);
-                fighter["Ring"] = GetEquipmentById(ring);
-                fighter["Right Hand"] = GetEquipmentById(rHand);
-                fighter["Left Hand"] = GetEquipmentById(lHand);
+                fighterView.Fighter["Head"] = GetEquipmentById(head);
+                fighterView.Fighter["Chest"] = GetEquipmentById(chest);
+                fighterView.Fighter["Gloves"] = GetEquipmentById(gloves);
+                fighterView.Fighter["Pants"] = GetEquipmentById(pants);
+                fighterView.Fighter["Shoes"] = GetEquipmentById(shoes);
+                fighterView.Fighter["Ring"] = GetEquipmentById(ring);
+                fighterView.Fighter["Right Hand"] = GetEquipmentById(rHand);
+                fighterView.Fighter["Left Hand"] = GetEquipmentById(lHand);
 
-                if (fighter.Id == 0)
+                if (fighterView.Fighter.FighterID == 0)
                 {
-                    if (!FighterExists(fighter.Name))
+                    if (!FighterExists(fighterView.Fighter.Name))
                     {
-                        fighter.Id = repo.Fighters.Count + 1;
-                        repo.Fighters.Add(fighter);
+                        repo.AddFighter(fighterView.Fighter);
                         ViewBag.EquipmentStatus = "New Fighter Saved!";
                     }
                     else
                     {
-                        ViewBag.EquipmentDuplicate = "You've already created a fighter named " + fighter.Name + ".";
+                        ViewBag.EquipmentDuplicate = "You've already created a fighter named " + fighterView.Fighter.Name + ".";
                     }
                 }
                 else
                 {
-                    Fighter f = GetFighterById(fighter.Id);
-                    Logic.CopyFighter(fighter, f);
+                    Fighter f = GetFighterById(fighterView.Fighter.FighterID);
+                    Logic.CopyFighter(fighterView.Fighter, f);
                     ViewBag.EquipmentStatus = "Fighter Saved!";
                 }
             }
-            return View("Index", fighter);
+            fighterView.AllEquipment = repo.Equipment;
+            fighterView.AllFighters = repo.Fighters;
+            return View("Index", fighterView);
         }
 
         [HttpPost]
         public IActionResult Edit(int id)
         {
             if (id != 0)
-                return View("Index", GetFighterById(id));
+            {
+                FighterView fighterView = new FighterView
+                {
+                    Fighter = GetFighterById(id),
+                    AllEquipment = repo.Equipment,
+                    AllFighters = repo.Fighters
+                };
+                return View("Index", fighterView);
+            }
             return RedirectToAction("Index");
         }
 
@@ -72,7 +87,7 @@ namespace FightBuilder.Controllers
         {
             foreach (Equipment e in repo.Equipment)
             {
-                if (e.Id == id)
+                if (e.EquipmentID == id)
                     return e;
             }
             return Logic.blankEquipment;
@@ -82,7 +97,7 @@ namespace FightBuilder.Controllers
         {
             foreach (Fighter f in repo.Fighters)
             {
-                if (f.Id == id)
+                if (f.FighterID == id)
                     return f;
             }
             return null;

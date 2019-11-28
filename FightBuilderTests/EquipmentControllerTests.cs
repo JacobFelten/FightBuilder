@@ -17,7 +17,7 @@ namespace FightBuilderTests
             var controller = new EquipmentController(repo);
             var e = new Equipment()
             {
-                Id = 0,
+                EquipmentID = 0,
                 Type = "Pants",
                 Name = "Steel Legs",
                 Description = "Lower piece of armor.",
@@ -29,13 +29,17 @@ namespace FightBuilderTests
                 FireDef = 30,
                 MagDef = 30
             };
+            var eV = new EquipmentView()
+            {
+                Equipment = e,
+            };
 
             //Act
-            controller.Save(e);
+            controller.Save(eV);
 
             //Assert
             Assert.Equal(4, repo.Equipment.Count);
-            Assert.Equal(4, repo.Equipment[3].Id);
+            Assert.Equal(4, repo.Equipment[3].EquipmentID);
             Assert.Equal("Steel Legs", repo.Equipment[3].Name);
         }
 
@@ -48,7 +52,7 @@ namespace FightBuilderTests
             var controller = new EquipmentController(repo);
             var e = new Equipment()
             {
-                Id = 0,
+                EquipmentID = 0,
                 Type = "Pants",
                 Name = "Shield",
                 Description = "Lower piece of armor.",
@@ -60,9 +64,13 @@ namespace FightBuilderTests
                 FireDef = 30,
                 MagDef = 30
             };
+            var eV = new EquipmentView()
+            {
+                Equipment = e,
+            };
 
             //Act
-            controller.Save(e);
+            controller.Save(eV);
 
             //Assert
             Assert.Equal(3, repo.Equipment.Count);
@@ -77,7 +85,7 @@ namespace FightBuilderTests
             var controller = new EquipmentController(repo);
             var e = new Equipment()
             {
-                Id = 1,
+                EquipmentID = 1,
                 Type = "Pants",
                 Name = "Steel Legs",
                 Description = "Lower piece of armor.",
@@ -89,13 +97,17 @@ namespace FightBuilderTests
                 FireDef = 30,
                 MagDef = 30
             };
+            var eV = new EquipmentView()
+            {
+                Equipment = e,
+            };
 
             //Act
-            controller.Save(e);
+            controller.Save(eV);
 
             //Assert
             Assert.Equal(3, repo.Equipment.Count);
-            Assert.Equal(1, repo.Equipment[0].Id);
+            Assert.Equal(1, repo.Equipment[0].EquipmentID);
             Assert.Equal("Steel Legs", repo.Equipment[0].Name);
             Assert.Equal(Logic.blankEquipment, repo.Fighters[0]["Head"]);
         }
@@ -104,7 +116,7 @@ namespace FightBuilderTests
         {
             repo.Equipment.Add(new Equipment
             {
-                Id = 1,
+                EquipmentID = 1,
                 Type = "Head",
                 Name = "Helmet",
                 Description = "Strong head piece.",
@@ -119,7 +131,7 @@ namespace FightBuilderTests
 
             repo.Equipment.Add(new Equipment
             {
-                Id = 2,
+                EquipmentID = 2,
                 Type = "Left Hand",
                 Name = "Shield",
                 Description = "Good Shield",
@@ -134,7 +146,7 @@ namespace FightBuilderTests
 
             repo.Equipment.Add(new Equipment
             {
-                Id = 3,
+                EquipmentID = 3,
                 Type = "Right Hand",
                 Name = "Sword",
                 Description = "Cool Saber",
@@ -149,7 +161,7 @@ namespace FightBuilderTests
 
             repo.Fighters.Add(new Fighter
             {
-                Id = 1,
+                FighterID = 1,
                 Name = "Bob",
                 Description = "Skilled warrior.",
                 Color = "Blue",
@@ -160,7 +172,7 @@ namespace FightBuilderTests
 
             repo.Fighters.Add(new Fighter
             {
-                Id = 2,
+                FighterID = 2,
                 Name = "Billy",
                 Color = "Black"
             });

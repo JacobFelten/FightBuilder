@@ -1,15 +1,13 @@
-﻿@model Equipment
+﻿@model EquipmentView
 
 @{
     ViewData["Title"] = "Design Equipment";
     //"head", "chest", "gloves", "pants", "shoes", "ring", "rhand", "lhand"
-    //"black", "white", "red", "orange", "yellow", "green", "skyBlue", "blue", "purple", "pink"
+    //"black", "white", "red", "orange", "yellow", "green", "skyBlue", "blue", "purple", "pink"    
 
-    Repository repo = new Repository();
-
-    string pic = Logic.GenerateEquipmentPic(Model);
+    string pic = Logic.GenerateEquipmentPic(Model.Equipment);
     string hidden = "hidden";
-    if (Model == Logic.blankEquipment)
+    if (Model.Equipment == Logic.blankEquipment)
     {
         ViewBag.EquipmentStatus = "";
         ViewBag.EquipmentDuplicate = "";
@@ -34,9 +32,9 @@
             <div class="col-1"></div>
             <div class="col-4 form-group">
                 <select class="form-control" name="id">
-                    @foreach (Equipment e in repo.Equipment)
+                    @foreach (Equipment e in Model.AllEquipment)
                     {
-                        <option value="@e.Id">@e.Name</option>
+                        <option value="@e.EquipmentID">@e.Name</option>
                     }
                 </select>
             </div>
@@ -55,15 +53,15 @@
             </ul>
         </div>
         <div class="card-body">
-            <input type="hidden" asp-for="Id" value="@Model.Id" />
+            <input type="hidden" asp-for="Equipment.EquipmentID" value="@Model.Equipment.EquipmentID" />
             <div class="row">
                 <div class="col-3">
                     <div class="form-group">
-                        <label asp-for="Type">Type:</label>
-                        <select class="form-control" asp-for="Type">
+                        <label asp-for="Equipment.Type">Type:</label>
+                        <select class="form-control" asp-for="Equipment.Type">
                             @foreach (string type in Logic.TypeValidation)
                             {
-                                if (type == Model.Type)
+                                if (type == Model.Equipment.Type)
                                 {
                                     <option value="@type" selected>@type</option>
                                 }
@@ -77,21 +75,21 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Name">Name:</label>
-                <input class="form-control" asp-for="Name" value="@Model.Name" />
+                <label asp-for="Equipment.Name">Name:</label>
+                <input class="form-control" asp-for="Equipment.Name" value="@Model.Equipment.Name" />
             </div>
             <div class="form-group">
-                <label asp-for="Description">Description:</label>
-                <textarea class="form-control" rows="3" asp-for="Description">@Model.Description</textarea>
+                <label asp-for="Equipment.Description">Description:</label>
+                <textarea class="form-control" rows="3" asp-for="Equipment.Description">@Model.Equipment.Description</textarea>
             </div>
             <div class="row">
                 <div class="col-3">
                     <div class="form-group">
-                        <label asp-for="Color">Color:</label>
-                        <select class="form-control" asp-for="Color">
+                        <label asp-for="Equipment.Color">Color:</label>
+                        <select class="form-control" asp-for="Equipment.Color">
                             @foreach (string color in Logic.ColorValidation)
                             {
-                                if (color == Model.Color)
+                                if (color == Model.Equipment.Color)
                                 {
                                     <option value="@color" selected>@color</option>
                                 }
@@ -108,28 +106,28 @@
             <div class="row">
                 <div class="col-2">
                     <div class="form-group">
-                        <label asp-for="PhysDam">Physical Attack:</label>
-                        <input class="form-control" asp-for="PhysDam" value="@Model.PhysDam" />
+                        <label asp-for="Equipment.PhysDam">Physical Attack:</label>
+                        <input class="form-control" asp-for="Equipment.PhysDam" value="@Model.Equipment.PhysDam" />
                     </div>
                     <div class="form-group">
-                        <label asp-for="MagDam">Magic Attack:</label>
-                        <input class="form-control" asp-for="MagDam" value="@Model.MagDam" />
+                        <label asp-for="Equipment.MagDam">Magic Attack:</label>
+                        <input class="form-control" asp-for="Equipment.MagDam" value="@Model.Equipment.MagDam" />
                     </div>
                     <div class="form-group">
-                        <label asp-for="FireDam">Fire Attack:</label>
-                        <input class="form-control" asp-for="FireDam" value="@Model.FireDam" />
+                        <label asp-for="Equipment.FireDam">Fire Attack:</label>
+                        <input class="form-control" asp-for="Equipment.FireDam" value="@Model.Equipment.FireDam" />
                     </div>
                     <div class="form-group">
-                        <label asp-for="PhysDef">Physical Defence:</label>
-                        <input class="form-control" asp-for="PhysDef" value="@Model.PhysDef" />
+                        <label asp-for="Equipment.PhysDef">Physical Defence:</label>
+                        <input class="form-control" asp-for="Equipment.PhysDef" value="@Model.Equipment.PhysDef" />
                     </div>
                     <div class="form-group">
-                        <label asp-for="MagDef">Magic Defence:</label>
-                        <input class="form-control" asp-for="MagDef" value="@Model.MagDef" />
+                        <label asp-for="Equipment.MagDef">Magic Defence:</label>
+                        <input class="form-control" asp-for="Equipment.MagDef" value="@Model.Equipment.MagDef" />
                     </div>
                     <div class="form-group">
-                        <label asp-for="FireDef">Fire Defence:</label>
-                        <input class="form-control" asp-for="FireDef" value="@Model.FireDef" />
+                        <label asp-for="Equipment.FireDef">Fire Defence:</label>
+                        <input class="form-control" asp-for="Equipment.FireDef" value="@Model.Equipment.FireDef" />
                     </div>
                 </div>
                 <div class="col-3"></div>

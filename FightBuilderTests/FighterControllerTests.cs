@@ -17,20 +17,24 @@ namespace FightBuilderTests
             var controller = new FighterController(repo);
             var f = new Fighter()
             {
-                Id = 0,
+                FighterID = 0,
                 Name = "Jane",
                 Description = "Strong Fighter.",
                 Color = "Purple",
                 Wins = 3,
                 Losses = 6
             };
+            var fV = new FighterView()
+            {
+                Fighter = f
+            };
 
             //Act
-            controller.Save(f, 1, -1, -1, -1, -1, -1, 3, 2);
+            controller.Save(fV, 1, -1, -1, -1, -1, -1, 3, 2);
 
             //Assert
             Assert.Equal(3, repo.Fighters.Count);
-            Assert.Equal(3, repo.Fighters[2].Id);
+            Assert.Equal(3, repo.Fighters[2].FighterID);
             Assert.Equal("Jane", repo.Fighters[2].Name);
             Assert.Equal(repo.Equipment[0], repo.Fighters[2]["Head"]);
             Assert.Equal(Logic.blankEquipment, repo.Fighters[2]["Chest"]);
@@ -51,16 +55,20 @@ namespace FightBuilderTests
             var controller = new FighterController(repo);
             var f = new Fighter()
             {
-                Id = 0,
+                FighterID = 0,
                 Name = "Bob",
                 Description = "Strong Fighter.",
                 Color = "Purple",
                 Wins = 3,
                 Losses = 6
             };
+            var fV = new FighterView()
+            {
+                Fighter = f
+            };
 
             //Act
-            controller.Save(f, 1, -1, -1, -1, -1, -1, 2, 3);
+            controller.Save(fV, 1, -1, -1, -1, -1, -1, 2, 3);
 
             //Assert
             Assert.Equal(2, repo.Fighters.Count);
@@ -75,20 +83,24 @@ namespace FightBuilderTests
             var controller = new FighterController(repo);
             var f = new Fighter()
             {
-                Id = 2,
+                FighterID = 2,
                 Name = "Jane",
                 Description = "Strong Fighter.",
                 Color = "Purple",
                 Wins = 3,
                 Losses = 6
             };
+            var fV = new FighterView()
+            {
+                Fighter = f
+            };
 
             //Act
-            controller.Save(f, 1, -1, -1, -1, -1, -1, 3, 2);
+            controller.Save(fV, 1, -1, -1, -1, -1, -1, 3, 2);
 
             //Assert
             Assert.Equal(2, repo.Fighters.Count);
-            Assert.Equal(2, repo.Fighters[1].Id);
+            Assert.Equal(2, repo.Fighters[1].FighterID);
             Assert.Equal("Jane", repo.Fighters[1].Name);
             Assert.Equal(repo.Equipment[0], repo.Fighters[1]["Head"]);
             Assert.Equal(Logic.blankEquipment, repo.Fighters[1]["Chest"]);
@@ -104,7 +116,7 @@ namespace FightBuilderTests
         {
             repo.Equipment.Add(new Equipment
             {
-                Id = 1,
+                EquipmentID = 1,
                 Type = "Head",
                 Name = "Helmet",
                 Description = "Strong head piece.",
@@ -119,7 +131,7 @@ namespace FightBuilderTests
 
             repo.Equipment.Add(new Equipment
             {
-                Id = 2,
+                EquipmentID = 2,
                 Type = "Left Hand",
                 Name = "Shield",
                 Description = "Good Shield",
@@ -134,7 +146,7 @@ namespace FightBuilderTests
 
             repo.Equipment.Add(new Equipment
             {
-                Id = 3,
+                EquipmentID = 3,
                 Type = "Right Hand",
                 Name = "Sword",
                 Description = "Cool Saber",
@@ -149,7 +161,7 @@ namespace FightBuilderTests
 
             repo.Fighters.Add(new Fighter
             {
-                Id = 1,
+                FighterID = 1,
                 Name = "Bob",
                 Description = "Skilled warrior.",
                 Color = "Blue",
@@ -160,7 +172,7 @@ namespace FightBuilderTests
 
             repo.Fighters.Add(new Fighter
             {
-                Id = 2,
+                FighterID = 2,
                 Name = "Billy",
                 Color = "Black"
             });

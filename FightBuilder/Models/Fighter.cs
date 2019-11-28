@@ -9,18 +9,9 @@ namespace FightBuilder.Models
 {
     public class Fighter
     {
-        private SortedList<string, Equipment> equipment = new SortedList<string, Equipment>();
         private string color;
 
-        public Fighter()
-        {
-            for (int i = 0; i < Logic.TypeValidation.Length; i++)
-            {
-                equipment.Add(Logic.TypeValidation[i], Logic.blankEquipment);
-            }
-        }
-
-        public int Id { get; set; }
+        public int FighterID { get; set; }
 
         [Required(ErrorMessage = "Please enter a name for your fighter.")]
         public string Name { get; set; }
@@ -38,20 +29,70 @@ namespace FightBuilder.Models
                     throw new Exception(value + " is not a valid color type.");
             }
         }
-        public int HitPoints { get; set; }
+        public Equipment Head { get; set; }
+        public Equipment Chest { get; set; }
+        public Equipment Gloves { get; set; }
+        public Equipment Pants { get; set; }
+        public Equipment Shoes { get; set; }
+        public Equipment Ring { get; set; }
+        public Equipment RightHand { get; set; }
+        public Equipment LeftHand { get; set; }
         public Equipment this[string key]
         {
             get
             {
-                if (equipment[key] == null)
-                    return Logic.blankEquipment;
-                return equipment[key];
+                switch (key)
+                {
+                    case "Head":
+                        return Head ?? Logic.blankEquipment;
+                    case "Chest":
+                        return Chest ?? Logic.blankEquipment;
+                    case "Gloves":
+                        return Gloves ?? Logic.blankEquipment;
+                    case "Pants":
+                        return Pants ?? Logic.blankEquipment;
+                    case "Shoes":
+                        return Shoes ?? Logic.blankEquipment;
+                    case "Ring":
+                        return Ring ?? Logic.blankEquipment;
+                    case "Right Hand":
+                        return RightHand ?? Logic.blankEquipment;
+                    case "Left Hand":
+                        return LeftHand ?? Logic.blankEquipment;
+                }
+                return Logic.blankEquipment;
             }
             set
             {
                 if (Array.Exists(Logic.TypeValidation, element => element == key))
                 {
-                    equipment[key] = value;
+                    switch(key)
+                    {
+                        case "Head":
+                            Head = value;
+                            break;
+                        case "Chest":
+                            Chest = value;
+                            break;
+                        case "Gloves":
+                            Gloves = value;
+                            break;
+                        case "Pants":
+                            Pants = value;
+                            break;
+                        case "Shoes":
+                            Shoes = value;
+                            break;
+                        case "Ring":
+                            Ring = value;
+                            break;
+                        case "Right Hand":
+                            RightHand = value;
+                            break;
+                        case "Left Hand":
+                            LeftHand = value;
+                            break;
+                    }
                 }
                 else
                     throw new Exception(key + " is not an equipment type.");

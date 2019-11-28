@@ -62,7 +62,7 @@ namespace FightBuilder.Repositories
 
         public static void CopyEquipment(Equipment original, Equipment copy)
         {
-            copy.Id = original.Id;
+            copy.EquipmentID = original.EquipmentID;
             copy.Name = original.Name;
             copy.Type = original.Type;
             copy.Description = original.Description;
@@ -77,7 +77,7 @@ namespace FightBuilder.Repositories
 
         public static void CopyFighter(Fighter original, Fighter copy)
         {
-            copy.Id = original.Id;
+            copy.FighterID = original.FighterID;
             copy.Name = original.Name;
             copy.Description = original.Description;
             copy.Color = original.Color;

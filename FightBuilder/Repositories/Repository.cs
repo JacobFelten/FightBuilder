@@ -24,5 +24,17 @@ namespace FightBuilder.Repositories
         {
             get { return context.Fighters.ToList(); }
         }
+
+        public void AddEquipment(Equipment equipment)
+        {
+            context.Equipment.Add(equipment);
+            context.SaveChanges();
+        }
+
+        public void AddFighter(Fighter fighter)
+        {
+            context.Fighters.Add(fighter);
+            context.SaveChanges();
+        }
     }
 }

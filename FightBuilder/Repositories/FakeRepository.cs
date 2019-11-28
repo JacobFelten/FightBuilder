@@ -28,6 +28,18 @@ namespace FightBuilder.Repositories
             get { return savedFighters; }
         }
 
+        public void AddEquipment(Equipment equipment)
+        {
+            equipment.EquipmentID = Equipment.Count + 1;
+            Equipment.Add(equipment);
+        }
+
+        public void AddFighter(Fighter figher)
+        {
+            figher.FighterID = Fighters.Count + 1;
+            Fighters.Add(figher);
+        }
+
         /*
         private void AddTestData()
         {

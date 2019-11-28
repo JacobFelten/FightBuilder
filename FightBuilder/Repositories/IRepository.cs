@@ -10,5 +10,9 @@ namespace FightBuilder.Repositories
     {
         List<Fighter> Fighters { get; }
         List<Equipment> Equipment { get; }
+
+        void AddEquipment(Equipment equipment);
+
+        void AddFighter(Fighter fighter);
     }
 }
