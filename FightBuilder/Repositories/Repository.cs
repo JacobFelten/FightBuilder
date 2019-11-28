@@ -8,17 +8,21 @@ namespace FightBuilder.Repositories
 {
     public class Repository : IRepository
     {
-        private static List<Equipment> savedEquipment = new List<Equipment>();
-        private static List<Fighter> savedFighters = new List<Fighter>();
+        private AppDbContext context;
+
+        public Repository(AppDbContext appDbContext)
+        {
+            context = appDbContext;
+        }
 
         public List<Equipment> Equipment
         {
-            get { return savedEquipment; }
+            get { return context.Equipment.ToList(); }
         }
 
         public List<Fighter> Fighters
         {
-            get { return savedFighters; }
+            get { return context.Fighters.ToList(); }
         }
     }
 }

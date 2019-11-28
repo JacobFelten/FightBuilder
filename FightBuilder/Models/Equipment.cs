@@ -12,7 +12,7 @@ namespace FightBuilder.Models
         private string type;
         private string color;
 
-        public int Id { get; set; }
+        public int EquipmentID { get; set; }
 
         public string Type
         {
