@@ -27,18 +27,7 @@ namespace FightBuilder.Repositories
 
         public void AddEquipment(Equipment equipment)
         {
-            Equipment e = new Equipment();
-            e.Type = equipment.Type;
-            e.Name = equipment.Name;
-            e.Description = equipment.Description;
-            e.Color = equipment.Color;
-            e.PhysDam = equipment.PhysDam;
-            e.MagDam = equipment.MagDam;
-            e.FireDam = equipment.FireDam;
-            e.PhysDef = equipment.PhysDef;
-            e.MagDef = equipment.MagDef;
-            e.FireDef = equipment.FireDef;
-            context.Equipment.Add(e);
+            context.Equipment.Add(equipment);
             context.SaveChanges();
         }
 

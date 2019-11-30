@@ -44,23 +44,23 @@ namespace FightBuilder.Models
                 switch (key)
                 {
                     case "Head":
-                        return Head ?? Logic.blankEquipment;
+                        return Head;
                     case "Chest":
-                        return Chest ?? Logic.blankEquipment;
+                        return Chest;
                     case "Gloves":
-                        return Gloves ?? Logic.blankEquipment;
+                        return Gloves;
                     case "Pants":
-                        return Pants ?? Logic.blankEquipment;
+                        return Pants;
                     case "Shoes":
-                        return Shoes ?? Logic.blankEquipment;
+                        return Shoes;
                     case "Ring":
-                        return Ring ?? Logic.blankEquipment;
+                        return Ring;
                     case "Right Hand":
-                        return RightHand ?? Logic.blankEquipment;
+                        return RightHand;
                     case "Left Hand":
-                        return LeftHand ?? Logic.blankEquipment;
+                        return LeftHand;
                 }
-                return Logic.blankEquipment;
+                return null;
             }
             set
             {
@@ -105,7 +105,8 @@ namespace FightBuilder.Models
                 int total = 0;
                 foreach (string type in Logic.TypeValidation)
                 {
-                    total += this[type].PhysDam;
+                    if (this[type] != null)
+                        total += this[type].PhysDam;
                 }
                 return total;
             }
@@ -117,7 +118,8 @@ namespace FightBuilder.Models
                 int total = 0;
                 foreach (string type in Logic.TypeValidation)
                 {
-                    total += this[type].MagDam;
+                    if (this[type] != null)
+                        total += this[type].MagDam;
                 }
                 return total;
             }
@@ -129,7 +131,8 @@ namespace FightBuilder.Models
                 int total = 0;
                 foreach (string type in Logic.TypeValidation)
                 {
-                    total += this[type].FireDam;
+                    if (this[type] != null)
+                        total += this[type].FireDam;
                 }
                 return total;
             }
@@ -141,7 +144,8 @@ namespace FightBuilder.Models
                 int total = 0;
                 foreach (string type in Logic.TypeValidation)
                 {
-                    total += this[type].PhysDef;
+                    if (this[type] != null)
+                        total += this[type].PhysDef;
                 }
                 return total;
             }
@@ -153,7 +157,8 @@ namespace FightBuilder.Models
                 int total = 0;
                 foreach (string type in Logic.TypeValidation)
                 {
-                    total += this[type].MagDef;
+                    if (this[type] != null)
+                        total += this[type].MagDef;
                 }
                 return total;
             }
@@ -165,7 +170,8 @@ namespace FightBuilder.Models
                 int total = 0;
                 foreach (string type in Logic.TypeValidation)
                 {
-                    total += this[type].FireDef;
+                    if (this[type] != null)
+                        total += this[type].FireDef;
                 }
                 return total;
             }

@@ -21,7 +21,7 @@ namespace FightBuilder.Controllers
         {
             FighterView fighterView = new FighterView
             {
-                Fighter = Logic.blankFighter,
+                Fighter = new Fighter(),
                 AllEquipment = repo.Equipment,
                 AllFighters = repo.Fighters
             };
@@ -89,7 +89,7 @@ namespace FightBuilder.Controllers
                 if (e.EquipmentID == id)
                     return e;
             }
-            return Logic.blankEquipment;
+            return null;
         }
 
         private Fighter GetFighterById(int id)

@@ -14,12 +14,14 @@ namespace FightBuilder.Repositories
         public static string[] ColorValidation { get; } =
             { "Black", "White", "Red", "Orange", "Yellow", "Green", "Sky Blue", "Blue", "Purple", "Pink" };
 
+        /*
         public static Equipment blankEquipment = new Equipment()
         {
             Name = ""
         };
 
         public static Fighter blankFighter = new Fighter();
+        */
 
         /*
         public Equipment GetEquipmentById(int id)

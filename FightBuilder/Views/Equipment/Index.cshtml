@@ -7,7 +7,7 @@
 
     string pic = Logic.GenerateEquipmentPic(Model.Equipment);
     string hidden = "hidden";
-    if (Model.Equipment == Logic.blankEquipment)
+    if (Model.Equipment.EquipmentID == 0)
     {
         ViewBag.EquipmentStatus = "";
         ViewBag.EquipmentDuplicate = "";

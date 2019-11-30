@@ -21,7 +21,7 @@ namespace FightBuilder.Controllers
         {
             EquipmentView equipmentView = new EquipmentView
             {
-                Equipment = Logic.blankEquipment,
+                Equipment = new Equipment(),
                 AllEquipment = repo.Equipment
             };
             return View(equipmentView);
@@ -32,7 +32,7 @@ namespace FightBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (equipmentView.Equipment.EquipmentID == Logic.blankEquipment.EquipmentID)
+                if (equipmentView.Equipment.EquipmentID == 0)
                 {
                     if (!EquipmentExists(equipmentView.Equipment.Name))
                     {
@@ -58,7 +58,7 @@ namespace FightBuilder.Controllers
         [HttpPost]
         public IActionResult Edit(int id)
         {
-            if (id != Logic.blankEquipment.EquipmentID)
+            if (id != 0)
             {
                 EquipmentView equipmentView = new EquipmentView
                 {
@@ -78,7 +78,7 @@ namespace FightBuilder.Controllers
                 if (e.EquipmentID == id)
                     return e;
             }
-            return Logic.blankEquipment;
+            return null;
         }
 
         private bool EquipmentExists(string name)
@@ -98,7 +98,7 @@ namespace FightBuilder.Controllers
                 for (int i = 0; i < Logic.TypeValidation.Count(); i++)
                 {
                     if (f[Logic.TypeValidation[i]].Type != Logic.TypeValidation[i])
-                        f[Logic.TypeValidation[i]] = Logic.blankEquipment;
+                        f[Logic.TypeValidation[i]] = null;
                 }
             }
         }

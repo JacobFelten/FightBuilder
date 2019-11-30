@@ -12,6 +12,7 @@ namespace FightBuilder.Repositories
     {
         public static void Seed(IApplicationBuilder app)
         {
+            /*
             AppDbContext context = app.ApplicationServices.GetRequiredService<AppDbContext>();
             context.Database.EnsureCreated();
 
@@ -26,6 +27,7 @@ namespace FightBuilder.Repositories
             {
                 Logic.blankEquipment = context.Equipment.First(e => e.EquipmentID == 1);
             }
+            */
         }
     }
 }

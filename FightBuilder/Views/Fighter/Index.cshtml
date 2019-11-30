@@ -13,8 +13,9 @@
     string[] pics = new string[Logic.TypeValidation.Count()];
     for (int i = 0; i < pics.Count(); i++)
     {
-        if (Model.Fighter == Logic.blankFighter
-            || Model.Fighter[Logic.TypeValidation[i]] == Logic.blankEquipment) 
+        if (Model.Fighter.FighterID == 0
+            || Model.Fighter[Logic.TypeValidation[i]] == null
+            || Model.Fighter[Logic.TypeValidation[i]].EquipmentID == 0) 
         {
             string type = "";
 
@@ -38,7 +39,7 @@
         }
     }
 
-    if (Model.Fighter == Logic.blankFighter)
+    if (Model.Fighter.FighterID == 0)
     {
         pic = "FighterBlank.jpg";
     }
@@ -146,7 +147,7 @@
                                 {
                                     if (e.Type == "Head")
                                     {
-                                        if (e.EquipmentID == Model.Fighter["Head"].EquipmentID)
+                                        if (Model.Fighter["Head"] != null && e.EquipmentID == Model.Fighter["Head"].EquipmentID)
                                         {
                                             <option value="@e.EquipmentID" selected>@e.Name</option>
                                         }
@@ -171,7 +172,7 @@
                                     {
                                         if (e.Type == "Chest")
                                         {
-                                            if (e.EquipmentID == Model.Fighter["Chest"].EquipmentID)
+                                            if (Model.Fighter["Chest"] != null && e.EquipmentID == Model.Fighter["Chest"].EquipmentID)
                                             {
                                                 <option value="@e.EquipmentID" selected>@e.Name</option>
                                             }
@@ -191,7 +192,7 @@
                                     {
                                         if (e.Type == "Left Hand")
                                         {
-                                            if (e.EquipmentID == Model.Fighter["Left Hand"].EquipmentID)
+                                            if (Model.Fighter["Left Hand"] != null && e.EquipmentID == Model.Fighter["Left Hand"].EquipmentID)
                                             {
                                                 <option value="@e.EquipmentID" selected>@e.Name</option>
                                             }
@@ -211,7 +212,7 @@
                                     {
                                         if (e.Type == "Pants")
                                         {
-                                            if (e.EquipmentID == Model.Fighter["Pants"].EquipmentID)
+                                            if (Model.Fighter["Pants"] != null && e.EquipmentID == Model.Fighter["Pants"].EquipmentID)
                                             {
                                                 <option value="@e.EquipmentID" selected>@e.Name</option>
                                             }
@@ -238,7 +239,7 @@
                                     {
                                         if (e.Type == "Gloves")
                                         {
-                                            if (e.EquipmentID == Model.Fighter["Gloves"].EquipmentID)
+                                            if (Model.Fighter["Gloves"] != null && e.EquipmentID == Model.Fighter["Gloves"].EquipmentID)
                                             {
                                                 <option value="@e.EquipmentID" selected>@e.Name</option>
                                             }
@@ -258,7 +259,7 @@
                                     {
                                         if (e.Type == "Right Hand")
                                         {
-                                            if (e.EquipmentID == Model.Fighter["Right Hand"].EquipmentID)
+                                            if (Model.Fighter["Right Hand"] != null && e.EquipmentID == Model.Fighter["Right Hand"].EquipmentID)
                                             {
                                                 <option value="@e.EquipmentID" selected>@e.Name</option>
                                             }
@@ -278,7 +279,7 @@
                                     {
                                         if (e.Type == "Ring")
                                         {
-                                            if (e.EquipmentID == Model.Fighter["Ring"].EquipmentID)
+                                            if (Model.Fighter["Ring"] != null && e.EquipmentID == Model.Fighter["Ring"].EquipmentID)
                                             {
                                                 <option value="@e.EquipmentID" selected>@e.Name</option>
                                             }
@@ -303,7 +304,7 @@
                                 {
                                     if (e.Type == "Shoes")
                                     {
-                                        if (e.EquipmentID == Model.Fighter["Shoes"].EquipmentID)
+                                        if (Model.Fighter["Shoes"] != null && e.EquipmentID == Model.Fighter["Shoes"].EquipmentID)
                                         {
                                             <option value="@e.EquipmentID" selected>@e.Name</option>
                                         }
