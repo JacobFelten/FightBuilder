@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FightBuilder.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FightBuilder.Repositories
 {
@@ -22,7 +23,16 @@ namespace FightBuilder.Repositories
 
         public List<Fighter> Fighters
         {
-            get { return context.Fighters.ToList(); }
+            get { return context.Fighters
+                    .Include(fighter => fighter.Head)
+                    .Include(fighter => fighter.Chest)
+                    .Include(fighter => fighter.Gloves)
+                    .Include(fighter => fighter.Pants)
+                    .Include(fighter => fighter.Shoes)
+                    .Include(fighter => fighter.Ring)
+                    .Include(fighter => fighter.RightHand)
+                    .Include(fighter => fighter.LeftHand)
+                    .ToList(); }
         }
 
         public void AddEquipment(Equipment equipment)

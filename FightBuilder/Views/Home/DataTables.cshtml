@@ -15,14 +15,14 @@
                 Id:@f.FighterID <br />
                 Description:@f.Description <br />
                 Color:@f.Color <br />
-                Head:@f["Head"].Name <br />
-                Chest:@f["Chest"].Name <br />
-                Pants:@f["Pants"].Name <br />
-                Shoes:@f["Shoes"].Name <br />
-                Gloves:@f["Gloves"].Name <br />
-                Ring:@f["Ring"].Name <br />
-                Right Hand:@f["Right Hand"].Name <br />
-                Left Hand:@f["Left Hand"].Name
+                Head:@(f["Head"] != null ? f["Head"].Name : "None") <br />
+                Chest:@(f["Chest"] != null ? f["Chest"].Name : "None") <br />
+                Pants:@(f["Pants"] != null ? f["Pants"].Name : "None") <br />
+                Shoes:@(f["Shoes"] != null ? f["Shoes"].Name : "None") <br />
+                Gloves:@(f["Gloves"] != null ? f["Gloves"].Name : "None") <br />
+                Ring:@(f["Ring"] != null ? f["Ring"].Name : "None") <br />
+                Right Hand:@(f["Right Hand"] != null ? f["Right Hand"].Name : "None") <br />
+                Left Hand:@(f["Left Hand"] != null ? f["Left Hand"].Name : "None")
             </div>
         </div>
     </div>

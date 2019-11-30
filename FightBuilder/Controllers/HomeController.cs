@@ -34,7 +34,13 @@ namespace FightBuilder.Controllers
 
         public IActionResult Fight()
         {
-            return View();
+            FightView fightView = new FightView
+            {
+                Fighter1 = repo.Fighters[0],
+                Fighter2 = repo.Fighters[1],
+                AllFighters = repo.Fighters
+            };
+            return View(fightView);
         }
 
         public IActionResult DataTables()

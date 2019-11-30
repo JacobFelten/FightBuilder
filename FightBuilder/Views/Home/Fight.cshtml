@@ -1,7 +1,166 @@
-﻿@{
+﻿@model  FightView
+
+@{
     ViewData["Title"] = "Fight!";
+    //{ "Head", "Chest", "Gloves", "Pants", "Shoes", "Ring", "Right Hand", "Left Hand" }
+
+    string pic = Logic.GenerateFighterPic(Model.Fighter1);
+    string[] pics = new string[Logic.TypeValidation.Count()];
+    for (int i = 0; i < pics.Count(); i++)
+    {
+        if (Model.Fighter1.FighterID == 0
+            || Model.Fighter1[Logic.TypeValidation[i]] == null
+            || Model.Fighter1[Logic.TypeValidation[i]].EquipmentID == 0)
+        {
+            pics[i] = "EquipmentBlank.jpg";
+        }
+        else
+        {
+            pics[i] = Logic.GenerateEquipmentPic(Model.Fighter1[Logic.TypeValidation[i]]);
+        }
+    }
+
+    if (Model.Fighter1.FighterID == 0)
+    {
+        pic = "FighterBlank.jpg";
+    }
+
+    string pic2 = Logic.GenerateFighterPic(Model.Fighter2);
+    string[] pics2 = new string[Logic.TypeValidation.Count()];
+    for (int i = 0; i < pics2.Count(); i++)
+    {
+        if (Model.Fighter2.FighterID == 0
+            || Model.Fighter2[Logic.TypeValidation[i]] == null
+            || Model.Fighter2[Logic.TypeValidation[i]].EquipmentID == 0)
+        {
+            pics2[i] = "EquipmentBlank.jpg";
+        }
+        else
+        {
+            pics2[i] = Logic.GenerateEquipmentPic(Model.Fighter2[Logic.TypeValidation[i]]);
+        }
+    }
+
+    if (Model.Fighter2.FighterID == 0)
+    {
+        pic = "FighterBlank.jpg";
+    }
 }
 
-<h3>Fight!</h3>
-<h2>Fight!</h2>
-<h1>Fight!</h1>
+<div class="row">
+    <div class="col-5">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <img class="fit" src="~/Images/@pics[0]" alt="Fighter Picture" />
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+            <div class="col-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <div class="row">
+                    <img class="fit" src="~/Images/@pics[1]" alt="Fighter Picture" />
+                </div>
+                <div class="row">
+                    <img class="fit" src="~/Images/@pics[7]" alt="Fighter Picture" />
+                </div>
+                <div class="row">
+                    <img class="fit" src="~/Images/@pics[3]" alt="Fighter Picture" />
+                </div>
+            </div>
+            <div class="col-4">
+                <img class="fit" src="~/Images/@pic" alt="Fighter Picture" />
+            </div>
+            <div class="col-2">
+                <div class="row">
+                    <img class="fit" src="~/Images/@pics[2]" alt="Fighter Picture" />
+                </div>
+                <div class="row">
+                    <img class="fit" src="~/Images/@pics[6]" alt="Fighter Picture" />
+                </div>
+                <div class="row">
+                    <img class="fit" src="~/Images/@pics[5]" alt="Fighter Picture" />
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-2"></div>
+                        <div class="col-8">
+                            <img class="fit" src="~/Images/@pics[4]" alt="Fighter Picture" />
+                        </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+    <div class="col-5">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <img class="fit" src="~/Images/@pics2[0]" alt="Fighter Picture" />
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+            <div class="col-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <div class="row">
+                    <img class="fit" src="~/Images/@pics2[1]" alt="Fighter Picture" />
+                </div>
+                <div class="row">
+                    <img class="fit" src="~/Images/@pics2[7]" alt="Fighter Picture" />
+                </div>
+                <div class="row">
+                    <img class="fit" src="~/Images/@pics2[3]" alt="Fighter Picture" />
+                </div>
+            </div>
+            <div class="col-4">
+                <img class="fit" src="~/Images/@pic2" alt="Fighter Picture" />
+            </div>
+            <div class="col-2">
+                <div class="row">
+                    <img class="fit" src="~/Images/@pics2[2]" alt="Fighter Picture" />
+                </div>
+                <div class="row">
+                    <img class="fit" src="~/Images/@pics2[6]" alt="Fighter Picture" />
+                </div>
+                <div class="row">
+                    <img class="fit" src="~/Images/@pics2[5]" alt="Fighter Picture" />
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <img class="fit" src="~/Images/@pics2[4]" alt="Fighter Picture" />
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+</div>
