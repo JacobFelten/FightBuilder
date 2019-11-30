@@ -34,11 +34,15 @@ namespace FightBuilder.Repositories
             Equipment.Add(equipment);
         }
 
+        public void UpdateEquipment(Equipment equipment) { }
+
         public void AddFighter(Fighter figher)
         {
             figher.FighterID = Fighters.Count + 1;
             Fighters.Add(figher);
         }
+
+        public void UpdateFighter(Fighter fighter) { }
 
         /*
         private void AddTestData()

@@ -27,13 +27,55 @@ namespace FightBuilder.Repositories
 
         public void AddEquipment(Equipment equipment)
         {
-            context.Equipment.Add(equipment);
+            Equipment e = new Equipment();
+            e.Type = equipment.Type;
+            e.Name = equipment.Name;
+            e.Description = equipment.Description;
+            e.Color = equipment.Color;
+            e.PhysDam = equipment.PhysDam;
+            e.MagDam = equipment.MagDam;
+            e.FireDam = equipment.FireDam;
+            e.PhysDef = equipment.PhysDef;
+            e.MagDef = equipment.MagDef;
+            e.FireDef = equipment.FireDef;
+            context.Equipment.Add(e);
+            context.SaveChanges();
+        }
+
+        public void UpdateEquipment(Equipment equipment)
+        {
+            Equipment e = context.Equipment.First(equip => equip.EquipmentID == equipment.EquipmentID);
+            e.Type = equipment.Type;
+            e.Name = equipment.Name;
+            e.Description = equipment.Description;
+            e.Color = equipment.Color;
+            e.PhysDam = equipment.PhysDam;
+            e.MagDam = equipment.MagDam;
+            e.FireDam = equipment.FireDam;
+            e.PhysDef = equipment.PhysDef;
+            e.MagDef = equipment.MagDef;
+            e.FireDef = equipment.FireDef;
+            context.Equipment.Update(e);
             context.SaveChanges();
         }
 
         public void AddFighter(Fighter fighter)
         {
             context.Fighters.Add(fighter);
+            context.SaveChanges();
+        }
+
+        public void UpdateFighter(Fighter fighter)
+        {
+            Fighter f = context.Fighters.First(fight => fight.FighterID == fighter.FighterID);
+            f.Name = fighter.Name;
+            f.Description = fighter.Description;
+            f.Color = fighter.Color;
+            foreach (string type in Logic.TypeValidation)
+                f[type] = fighter[type];
+            f.Wins = fighter.Wins;
+            f.Losses = fighter.Losses;
+            context.Fighters.Update(f);
             context.SaveChanges();
         }
     }

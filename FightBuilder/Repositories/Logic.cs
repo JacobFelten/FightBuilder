@@ -14,7 +14,10 @@ namespace FightBuilder.Repositories
         public static string[] ColorValidation { get; } =
             { "Black", "White", "Red", "Orange", "Yellow", "Green", "Sky Blue", "Blue", "Purple", "Pink" };
 
-        public static Equipment blankEquipment = new Equipment();
+        public static Equipment blankEquipment = new Equipment()
+        {
+            Name = ""
+        };
 
         public static Fighter blankFighter = new Fighter();
 
@@ -58,7 +61,7 @@ namespace FightBuilder.Repositories
             }
             return false;
         }
-        */
+        
 
         public static void CopyEquipment(Equipment original, Equipment copy)
         {
@@ -89,7 +92,7 @@ namespace FightBuilder.Repositories
             copy.Losses = original.Losses;
         }
 
-        /*
+        
         public void UpdateFighters()
         {
             foreach (Fighter f in repo.Fighters)

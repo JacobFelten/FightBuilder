@@ -32,7 +32,7 @@ namespace FightBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (equipmentView.Equipment.EquipmentID == 0)
+                if (equipmentView.Equipment.EquipmentID == Logic.blankEquipment.EquipmentID)
                 {
                     if (!EquipmentExists(equipmentView.Equipment.Name))
                     {
@@ -46,8 +46,7 @@ namespace FightBuilder.Controllers
                 }
                 else
                 {
-                    Equipment e = GetEquipmentById(equipmentView.Equipment.EquipmentID);
-                    Logic.CopyEquipment(equipmentView.Equipment, e);
+                    repo.UpdateEquipment(equipmentView.Equipment);
                     UpdateFighters();
                     ViewBag.EquipmentStatus = "Equipment Saved!";
                 }
@@ -59,7 +58,7 @@ namespace FightBuilder.Controllers
         [HttpPost]
         public IActionResult Edit(int id)
         {
-            if (id != 0)
+            if (id != Logic.blankEquipment.EquipmentID)
             {
                 EquipmentView equipmentView = new EquipmentView
                 {

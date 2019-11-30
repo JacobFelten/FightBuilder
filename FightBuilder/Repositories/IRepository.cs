@@ -13,6 +13,10 @@ namespace FightBuilder.Repositories
 
         void AddEquipment(Equipment equipment);
 
+        void UpdateEquipment(Equipment equipment);
+
         void AddFighter(Fighter fighter);
+
+        void UpdateFighter(Fighter fighter);
     }
 }

@@ -13,7 +13,8 @@
     string[] pics = new string[Logic.TypeValidation.Count()];
     for (int i = 0; i < pics.Count(); i++)
     {
-        if (Model.Fighter == Logic.blankFighter || Model.Fighter[Logic.TypeValidation[i]] == Logic.blankEquipment)
+        if (Model.Fighter == Logic.blankFighter
+            || Model.Fighter[Logic.TypeValidation[i]] == Logic.blankEquipment) 
         {
             string type = "";
 

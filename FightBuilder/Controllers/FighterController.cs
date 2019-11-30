@@ -56,8 +56,7 @@ namespace FightBuilder.Controllers
                 }
                 else
                 {
-                    Fighter f = GetFighterById(fighterView.Fighter.FighterID);
-                    Logic.CopyFighter(fighterView.Fighter, f);
+                    repo.UpdateFighter(fighterView.Fighter);
                     ViewBag.EquipmentStatus = "Fighter Saved!";
                 }
             }
