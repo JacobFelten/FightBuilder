@@ -53,9 +53,11 @@
     }
 
     string hidden2 = "";
+    string hidden2Opposite = "hidden";
     if (!Model.FightOver)
     {
         hidden2 = "hidden";
+        hidden2Opposite = "";
     }
 
     string hidden3 = "";
@@ -67,8 +69,8 @@
     }
 }
 
-<div class="jumbotron @hidden2">
-    <div class="row">
+<div class="jumbotron">
+    <div class="row @hidden2">
         <div class="col-5 text-center">
             @if (Model.Fighter2Damage >= Model.Fighter1Damage)
             {
@@ -78,7 +80,7 @@
             {
                 <h1 class="text-danger">Loser...</h1>
             }
-            Damage delt: @Model.Fighter2Damage
+            Damage dealt: @Model.Fighter2Damage
         </div>
         <div class="col-2 text-center @hidden3">
             <h1>CLONE</h1>
@@ -94,8 +96,19 @@
             {
                 <h1 class="text-danger">Loser...</h1>
             }
-            Damage delt: @Model.Fighter1Damage
+            Damage dealt: @Model.Fighter1Damage
         </div>
+    </div>
+    <div class="row @hidden2Opposite">
+        <div class="col-2"></div>
+        <div class="col-8 text-center">
+            <h1>Fight Arena!</h1>
+            <h6>Pick two fighters to go head to head. Damage dealt is determined by a fighter’s
+                total damage in each category subtracted by their opponent’s total defense in each 
+                category. Ties go to the attacker (the fighter on the left).
+            </h6>
+        </div>
+        <div class="col-2"></div>
     </div>
 </div>
 
@@ -194,7 +207,7 @@
             </div>
         </div>
         <div class="col-2 text-center">
-            <button type="submit" class="btn btn-lg btn-info">Select Fighters</button>
+            <button type="submit" class="btn btn-lg btn-primary">Select Fighters</button>
             <br />
             <br />
             <br />

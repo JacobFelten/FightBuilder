@@ -1,29 +1,51 @@
-﻿@model List<Fighter>
-
-@{
+﻿@{
     ViewData["Title"] = "Data Tables";
 }
 
-@foreach (Fighter f in Model)
-{
-    <div class="flex-row">
-        <div class="card">
-            <div class="card-header text-center">
-                <h3>@f.Name</h3>
-            </div>
-            <div class="card-body">
-                Id:@f.FighterID <br />
-                Description:@f.Description <br />
-                Color:@f.Color <br />
-                Head:@(f["Head"] != null ? f["Head"].Name : "None") <br />
-                Chest:@(f["Chest"] != null ? f["Chest"].Name : "None") <br />
-                Pants:@(f["Pants"] != null ? f["Pants"].Name : "None") <br />
-                Shoes:@(f["Shoes"] != null ? f["Shoes"].Name : "None") <br />
-                Gloves:@(f["Gloves"] != null ? f["Gloves"].Name : "None") <br />
-                Ring:@(f["Ring"] != null ? f["Ring"].Name : "None") <br />
-                Right Hand:@(f["Right Hand"] != null ? f["Right Hand"].Name : "None") <br />
-                Left Hand:@(f["Left Hand"] != null ? f["Left Hand"].Name : "None")
-            </div>
+<div class="jumbotron">
+
+</div>
+
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-4">
+        <div class="card container">
+            <form asp-action="FighterSearch" method="post">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <button type="submit" class="btn">Search</button>
+                            </span>
+                        </div>
+                        <input class="form-control" name="search" />
+                    </div>
+                </div>
+            </form>
+            <a asp-action="FighterTable">
+                <img class="fit" src="~/Images/FighterBlack.jpg" alt="Fighter Picture" />
+            </a>
         </div>
     </div>
-}
+    <div class="col-2"></div>
+    <div class="col-4">
+        <div class="card container">
+            <form asp-action="EquipmentSearch" method="post">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <button type="submit" class="btn">Search</button>
+                            </span>
+                        </div>
+                        <input class="form-control" name="search" />
+                    </div>
+                </div>
+            </form>
+            <a asp-action="EquipmentTable">
+                <img class="fit" src="~/Images/EquipmentButton.jpg" alt="Fighter Picture" />
+            </a>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>

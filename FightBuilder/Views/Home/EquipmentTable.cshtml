@@ -1,0 +1,28 @@
+﻿@model List<Equipment>
+
+@{
+    ViewData["Title"] = "Equipment Table";
+}
+
+@foreach (Equipment e in Model)
+{
+    <div class="flex-row">
+        <div class="card">
+            <div class="card-header text-center">
+                <h3>@e.Name</h3>
+            </div>
+            <div class="card-body">
+                Id:@e.EquipmentID <br />
+                Type:@e.Type
+                Description:@e.Description <br />
+                Color:@e.Color <br />
+                Physical Damage:@e.PhysDam <br />
+                Magic Damage:@e.MagDam <br />
+                Fire Damage:@e.FireDam <br />
+                Physical Defense:@e.PhysDef <br />
+                Magic Defense:@e.MagDef <br />
+                Fire Defense:@e.FireDef
+            </div>
+        </div>
+    </div>
+}

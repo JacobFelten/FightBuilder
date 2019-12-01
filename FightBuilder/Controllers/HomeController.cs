@@ -77,13 +77,27 @@ namespace FightBuilder.Controllers
             fightView.Fighter1Damage = Logic.CalculateTotalDamage(fightView.Fighter1, fightView.Fighter2);
             fightView.Fighter2Damage = Logic.CalculateTotalDamage(fightView.Fighter2, fightView.Fighter1);
             Logic.Fight(fightView.Fighter1, fightView.Fighter2);
+            repo.UpdateFighter(fightView.Fighter1);
+            repo.UpdateFighter(fightView.Fighter2);
 
             return View("Fight", fightView);
         }
 
         public IActionResult DataTables()
         {
+            return View();
+        }
+
+
+
+        public IActionResult FighterTable()
+        {
             return View(repo.Fighters);
+        }
+
+        public IActionResult EquipmentTable()
+        {
+            return View(repo.Equipment);
         }
     }
 }
