@@ -43,124 +43,233 @@
 
     if (Model.Fighter2.FighterID == 0)
     {
-        pic = "FighterBlank.jpg";
+        pic2 = "FighterBlank.jpg";
+    }
+
+    string hidden = "";
+    if (!Model.ReadyToFight)
+    {
+        hidden = "hidden";
+    }
+
+    string hidden2 = "";
+    if (!Model.FightOver)
+    {
+        hidden2 = "hidden";
+    }
+
+    string hidden3 = "";
+    string hidden3Opposite = "hidden";
+    if (!Model.IsCloneFight)
+    {
+        hidden3 = "hidden";
+        hidden3Opposite = "";
     }
 }
 
-<div class="row">
-    <div class="col-5">
-        <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-8">
-                        <img class="fit" src="~/Images/@pics[0]" alt="Fighter Picture" />
-                    </div>
-                    <div class="col-2"></div>
-                </div>
-            </div>
-            <div class="col-4"></div>
+<div class="jumbotron @hidden2">
+    <div class="row">
+        <div class="col-5 text-center">
+            @if (Model.Fighter2Damage >= Model.Fighter1Damage)
+            {
+                <h1 class="text-success">Winner!</h1>
+            }
+            else
+            {
+                <h1 class="text-danger">Loser...</h1>
+            }
+            Damage delt: @Model.Fighter2Damage
         </div>
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-2">
-                <div class="row">
-                    <img class="fit" src="~/Images/@pics[1]" alt="Fighter Picture" />
-                </div>
-                <div class="row">
-                    <img class="fit" src="~/Images/@pics[7]" alt="Fighter Picture" />
-                </div>
-                <div class="row">
-                    <img class="fit" src="~/Images/@pics[3]" alt="Fighter Picture" />
-                </div>
-            </div>
-            <div class="col-4">
-                <img class="fit" src="~/Images/@pic" alt="Fighter Picture" />
-            </div>
-            <div class="col-2">
-                <div class="row">
-                    <img class="fit" src="~/Images/@pics[2]" alt="Fighter Picture" />
-                </div>
-                <div class="row">
-                    <img class="fit" src="~/Images/@pics[6]" alt="Fighter Picture" />
-                </div>
-                <div class="row">
-                    <img class="fit" src="~/Images/@pics[5]" alt="Fighter Picture" />
-                </div>
-            </div>
-            <div class="col-2"></div>
+        <div class="col-2 text-center @hidden3">
+            <h1>CLONE</h1>
+            <h1>FIGHT!!!</h1>
         </div>
-        <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
-                <div class="row">
-                    <div class="col-2"></div>
-                        <div class="col-8">
-                            <img class="fit" src="~/Images/@pics[4]" alt="Fighter Picture" />
-                        </div>
-                    <div class="col-2"></div>
-                </div>
-            </div>
-            <div class="col-4"></div>
-        </div>
-    </div>
-    <div class="col-2"></div>
-    <div class="col-5">
-        <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-8">
-                        <img class="fit" src="~/Images/@pics2[0]" alt="Fighter Picture" />
-                    </div>
-                    <div class="col-2"></div>
-                </div>
-            </div>
-            <div class="col-4"></div>
-        </div>
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-2">
-                <div class="row">
-                    <img class="fit" src="~/Images/@pics2[1]" alt="Fighter Picture" />
-                </div>
-                <div class="row">
-                    <img class="fit" src="~/Images/@pics2[7]" alt="Fighter Picture" />
-                </div>
-                <div class="row">
-                    <img class="fit" src="~/Images/@pics2[3]" alt="Fighter Picture" />
-                </div>
-            </div>
-            <div class="col-4">
-                <img class="fit" src="~/Images/@pic2" alt="Fighter Picture" />
-            </div>
-            <div class="col-2">
-                <div class="row">
-                    <img class="fit" src="~/Images/@pics2[2]" alt="Fighter Picture" />
-                </div>
-                <div class="row">
-                    <img class="fit" src="~/Images/@pics2[6]" alt="Fighter Picture" />
-                </div>
-                <div class="row">
-                    <img class="fit" src="~/Images/@pics2[5]" alt="Fighter Picture" />
-                </div>
-            </div>
-            <div class="col-2"></div>
-        </div>
-        <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-8">
-                        <img class="fit" src="~/Images/@pics2[4]" alt="Fighter Picture" />
-                    </div>
-                    <div class="col-2"></div>
-                </div>
-            </div>
-            <div class="col-4"></div>
+        <div class="col-2 @hidden3Opposite"></div>
+        <div class="col-5 text-center">
+            @if (Model.Fighter1Damage > Model.Fighter2Damage)
+            {
+                <h1 class="text-success">Winner!</h1>
+            }
+            else
+            {
+                <h1 class="text-danger">Loser...</h1>
+            }
+            Damage delt: @Model.Fighter1Damage
         </div>
     </div>
 </div>
+
+<form asp-action="Fight" method="post">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+            <select class="form-control" name="fighter1Id">
+                @foreach (Fighter f in Model.AllFighters)
+                {
+                    if (f.FighterID == Model.Fighter1.FighterID)
+                    {
+                        <option value="@f.FighterID" selected>@f.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@f.FighterID">@f.Name</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-4"></div>
+        <div class="col-3">
+            <select class="form-control" name="fighter2Id">
+                @foreach (Fighter f in Model.AllFighters)
+                {
+                    if (f.FighterID == Model.Fighter2.FighterID)
+                    {
+                        <option value="@f.FighterID" selected>@f.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@f.FighterID">@f.Name</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-5">
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-8">
+                            <img class="fit" src="~/Images/@pics[0]" alt="Fighter Picture" />
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+                <div class="col-4"></div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-2">
+                    <div class="row">
+                        <img class="fit" src="~/Images/@pics[1]" alt="Fighter Picture" />
+                    </div>
+                    <div class="row">
+                        <img class="fit" src="~/Images/@pics[7]" alt="Fighter Picture" />
+                    </div>
+                    <div class="row">
+                        <img class="fit" src="~/Images/@pics[3]" alt="Fighter Picture" />
+                    </div>
+                </div>
+                <div class="col-4">
+                    <img class="fit" src="~/Images/@pic" alt="Fighter Picture" />
+                </div>
+                <div class="col-2">
+                    <div class="row">
+                        <img class="fit" src="~/Images/@pics[2]" alt="Fighter Picture" />
+                    </div>
+                    <div class="row">
+                        <img class="fit" src="~/Images/@pics[6]" alt="Fighter Picture" />
+                    </div>
+                    <div class="row">
+                        <img class="fit" src="~/Images/@pics[5]" alt="Fighter Picture" />
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-2"></div>
+                            <div class="col-8">
+                                <img class="fit" src="~/Images/@pics[4]" alt="Fighter Picture" />
+                            </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+        <div class="col-2 text-center">
+            <button type="submit" class="btn btn-lg btn-info">Select Fighters</button>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="row @hidden">
+                <div class="col text-center">
+                    <a asp-action="FightStart"
+                       asp-route-fighter1Id="@Model.Fighter1.FighterID"
+                       asp-route-fighter2Id="@Model.Fighter2.FighterID"
+                       class="btn btn-danger text-white">
+                        <h3>Fight!</h3>
+                        <h2>Fight!</h2>
+                        <h1>FIGHT!!!</h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-8">
+                            <img class="fit" src="~/Images/@pics2[0]" alt="Fighter Picture" />
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+                <div class="col-4"></div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-2">
+                    <div class="row">
+                        <img class="fit" src="~/Images/@pics2[1]" alt="Fighter Picture" />
+                    </div>
+                    <div class="row">
+                        <img class="fit" src="~/Images/@pics2[7]" alt="Fighter Picture" />
+                    </div>
+                    <div class="row">
+                        <img class="fit" src="~/Images/@pics2[3]" alt="Fighter Picture" />
+                    </div>
+                </div>
+                <div class="col-4">
+                    <img class="fit" src="~/Images/@pic2" alt="Fighter Picture" />
+                </div>
+                <div class="col-2">
+                    <div class="row">
+                        <img class="fit" src="~/Images/@pics2[2]" alt="Fighter Picture" />
+                    </div>
+                    <div class="row">
+                        <img class="fit" src="~/Images/@pics2[6]" alt="Fighter Picture" />
+                    </div>
+                    <div class="row">
+                        <img class="fit" src="~/Images/@pics2[5]" alt="Fighter Picture" />
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-8">
+                            <img class="fit" src="~/Images/@pics2[4]" alt="Fighter Picture" />
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+    </div>
+</form>

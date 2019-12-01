@@ -36,11 +36,49 @@ namespace FightBuilder.Controllers
         {
             FightView fightView = new FightView
             {
-                Fighter1 = repo.Fighters[0],
-                Fighter2 = repo.Fighters[1],
-                AllFighters = repo.Fighters
+                Fighter1 = new Fighter(),
+                Fighter2 = new Fighter(),
+                AllFighters = repo.Fighters,
+                ReadyToFight = false,
+                FightOver = false,
+                IsCloneFight = false
             };
             return View(fightView);
+        }
+
+        [HttpPost]
+        public IActionResult Fight(int fighter1Id, int fighter2Id)
+        {
+            FightView fightView = new FightView
+            {
+                Fighter1 = repo.Fighters.First(fighter => fighter.FighterID == fighter1Id),
+                Fighter2 = repo.Fighters.First(fighter => fighter.FighterID == fighter2Id),
+                AllFighters = repo.Fighters,
+                ReadyToFight = true,
+                FightOver = false,
+                IsCloneFight = false
+            };
+            return View(fightView);
+        }
+
+        public IActionResult FightStart(int fighter1Id, int fighter2Id)
+        {
+            FightView fightView = new FightView
+            {
+                Fighter1 = repo.Fighters.First(fighter => fighter.FighterID == fighter1Id),
+                Fighter2 = repo.Fighters.First(fighter => fighter.FighterID == fighter2Id),
+                AllFighters = repo.Fighters,
+                ReadyToFight = false,
+                FightOver = true,
+                IsCloneFight = false
+            };
+            if (fightView.Fighter1.FighterID == fightView.Fighter2.FighterID)
+                fightView.IsCloneFight = true;
+            fightView.Fighter1Damage = Logic.CalculateTotalDamage(fightView.Fighter1, fightView.Fighter2);
+            fightView.Fighter2Damage = Logic.CalculateTotalDamage(fightView.Fighter2, fightView.Fighter1);
+            Logic.Fight(fightView.Fighter1, fightView.Fighter2);
+
+            return View("Fight", fightView);
         }
 
         public IActionResult DataTables()
