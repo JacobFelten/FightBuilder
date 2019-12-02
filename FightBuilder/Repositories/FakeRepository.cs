@@ -44,6 +44,8 @@ namespace FightBuilder.Repositories
 
         public void UpdateFighter(Fighter fighter) { }
 
+        public void DeleteFighter(Fighter fighter) { }
+
         /*
         private void AddTestData()
         {

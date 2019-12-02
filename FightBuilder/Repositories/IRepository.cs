@@ -18,5 +18,7 @@ namespace FightBuilder.Repositories
         void AddFighter(Fighter fighter);
 
         void UpdateFighter(Fighter fighter);
+
+        void DeleteFighter(Fighter fighter);
     }
 }

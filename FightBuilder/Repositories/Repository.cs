@@ -77,5 +77,11 @@ namespace FightBuilder.Repositories
             context.Fighters.Update(f);
             context.SaveChanges();
         }
+
+        public void DeleteFighter(Fighter fighter)
+        {
+            context.Fighters.Remove(fighter);
+            context.SaveChanges();
+        }
     }
 }

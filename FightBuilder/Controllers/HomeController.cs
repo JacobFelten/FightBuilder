@@ -22,16 +22,6 @@ namespace FightBuilder.Controllers
             return View();
         }
 
-        public IActionResult DesignEquipment()
-        {
-            return View();
-        }
-
-        public IActionResult BuildAFighter()
-        {
-            return View();
-        }
-
         public IActionResult Fight()
         {
             FightView fightView = new FightView
@@ -88,16 +78,43 @@ namespace FightBuilder.Controllers
             return View();
         }
 
-
-
         public IActionResult FighterTable()
         {
             return View(repo.Fighters);
         }
 
+        public IActionResult FighterSearch(string search)
+        {
+            List<Fighter> fighters = new List<Fighter>();
+            foreach (Fighter f in repo.Fighters)
+            {
+                if (f.Name.Contains(search))
+                    fighters.Add(f);
+            }
+            return View("FighterTable", fighters);
+        }
+
+        public IActionResult FighterDelete(int fighterId)
+        {
+            Fighter fighter = repo.Fighters.First(f => f.FighterID == fighterId);
+            repo.DeleteFighter(fighter);
+            return View("DataTables");
+        }
+
         public IActionResult EquipmentTable()
         {
             return View(repo.Equipment);
+        }
+
+        public IActionResult EquipmentSearch(string search)
+        {
+            List<Equipment> equipment = new List<Equipment>();
+            foreach (Equipment e in repo.Equipment)
+            {
+                if (e.Name.Contains(search))
+                    equipment.Add(e);
+            }
+            return View("EquipmentTable", equipment);
         }
     }
 }

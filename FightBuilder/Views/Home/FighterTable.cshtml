@@ -1,31 +1,59 @@
 ﻿@model List<Fighter>
 
 @{
+    Layout = "_DataTablesLayout";
     ViewData["Title"] = "Fighter Table";
 }
 
-@foreach (Fighter f in Model)
+@if (Model.Count == 0)
 {
-    <div class="flex-row">
-        <div class="card">
-            <div class="card-header text-center">
-                <h3>@f.Name</h3>
-            </div>
-            <div class="card-body">
-                Id:@f.FighterID <br />
-                Description:@f.Description <br />
-                Color:@f.Color <br />
-                Head:@(f["Head"] != null ? f["Head"].Name : "None") <br />
-                Chest:@(f["Chest"] != null ? f["Chest"].Name : "None") <br />
-                Pants:@(f["Pants"] != null ? f["Pants"].Name : "None") <br />
-                Shoes:@(f["Shoes"] != null ? f["Shoes"].Name : "None") <br />
-                Gloves:@(f["Gloves"] != null ? f["Gloves"].Name : "None") <br />
-                Ring:@(f["Ring"] != null ? f["Ring"].Name : "None") <br />
-                Right Hand:@(f["Right Hand"] != null ? f["Right Hand"].Name : "None") <br />
-                Left Hand:@(f["Left Hand"] != null ? f["Left Hand"].Name : "None") <br />
-                Wins:@f.Wins <br />
-                Losses:@f.Losses
-            </div>
-        </div>
+    <h1 class="text-center">No fighters match that search.</h1>
+}
+else
+{
+    <div>
+        <table class="table table-bordered">
+            <tr>
+                <th></th>
+                <th>Description</th>
+                <th>Color</th>
+                <th>Equipment</th>
+                <th>Physical Damage</th>
+                <th>Magic Damage</th>
+                <th>Fire Damage</th>
+                <th>Physical Defense</th>
+                <th>Magic Defense</th>
+                <th>Fire Defense</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th></th>
+            </tr>
+            @foreach (Fighter f in Model)
+            {
+                <tr>
+                    <th>@f.Name</th>
+                    <td>@f.Description</td>
+                    <td>@f.Color</td>
+                    <td>
+                        <select>
+                            <option selected></option>
+                            @foreach (string type in Logic.TypeValidation)
+                            {
+                                <option disabled>@type: @(f[type] != null ? f[type].Name : "None")</option>
+                            }
+                        </select>
+                    </td>
+                    <td>@f.TotalPhysDam</td>
+                    <td>@f.TotalMagDam</td>
+                    <td>@f.TotalFireDam</td>
+                    <td>@f.TotalPhysDef</td>
+                    <td>@f.TotalMagDef</td>
+                    <td>@f.TotalFireDef</td>
+                    <td>@f.Wins</td>
+                    <td>@f.Losses</td>
+                    <td><a asp-action="FighterDelete" asp-route-fighterId="@f.FighterID" class="btn btn-primary">Delete</a></td>
+                </tr>
+            }
+        </table>
     </div>
 }

@@ -25,6 +25,7 @@ namespace FightBuilder.Controllers
                 AllEquipment = repo.Equipment,
                 AllFighters = repo.Fighters
             };
+
             return View(fighterView);
         }
 
