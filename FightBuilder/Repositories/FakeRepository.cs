@@ -36,6 +36,8 @@ namespace FightBuilder.Repositories
 
         public void UpdateEquipment(Equipment equipment) { }
 
+        public void DeleteEquipment(Equipment equipment) { }
+
         public void AddFighter(Fighter figher)
         {
             figher.FighterID = Fighters.Count + 1;

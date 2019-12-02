@@ -58,6 +58,12 @@ namespace FightBuilder.Repositories
             context.SaveChanges();
         }
 
+        public void DeleteEquipment(Equipment equipment)
+        {
+            context.Equipment.Remove(equipment);
+            context.SaveChanges();
+        }
+
         public void AddFighter(Fighter fighter)
         {
             context.Fighters.Add(fighter);

@@ -1,7 +1,21 @@
-﻿@{
+﻿@model bool
+
+@{
     Layout = "_DataTablesLayout";
     ViewData["Title"] = "Data Tables";
+
+    string hidden = "";
+    if (Model)
+    {
+        hidden = "hidden";
+    }
 }
+
+<div class="@hidden">
+    <h2 class="text-center text-danger">
+        You can't delete an equipment that a fighter is using.
+    </h2>
+</div>
 
 <div class="row">
     <div class="col-1"></div>
@@ -40,7 +54,7 @@
                 </div>
             </form>
             <a asp-action="EquipmentTable">
-                <img class="fit" src="~/Images/EquipmentButton.jpg" alt="Fighter Picture" />
+                <img class="fit" src="~/Images/EquipmentButton.jpg" alt="Equipment Picture" />
             </a>
         </div>
     </div>

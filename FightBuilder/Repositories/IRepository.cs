@@ -15,6 +15,8 @@ namespace FightBuilder.Repositories
 
         void UpdateEquipment(Equipment equipment);
 
+        void DeleteEquipment(Equipment equipment);
+
         void AddFighter(Fighter fighter);
 
         void UpdateFighter(Fighter fighter);

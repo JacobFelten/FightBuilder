@@ -1,29 +1,63 @@
-﻿@model List<Equipment>
+﻿@model FighterView
 
 @{
     Layout = "_DataTablesLayout";
     ViewData["Title"] = "Equipment Table";
 }
 
-@foreach (Equipment e in Model)
+@if (Model.AllEquipment.Count == 0)
 {
-    <div class="flex-row">
-        <div class="card">
-            <div class="card-header text-center">
-                <h3>@e.Name</h3>
-            </div>
-            <div class="card-body">
-                Id:@e.EquipmentID <br />
-                Type:@e.Type
-                Description:@e.Description <br />
-                Color:@e.Color <br />
-                Physical Damage:@e.PhysDam <br />
-                Magic Damage:@e.MagDam <br />
-                Fire Damage:@e.FireDam <br />
-                Physical Defense:@e.PhysDef <br />
-                Magic Defense:@e.MagDef <br />
-                Fire Defense:@e.FireDef
-            </div>
-        </div>
+    <h1 class="text-center">No equipment match that search.</h1>
+}
+else
+{
+    <div>
+        <table class="table table-bordered">
+            <tr class="text-center">
+                <th></th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Color</th>
+                <th>Fighters That Use This</th>
+                <th>Physical Damage</th>
+                <th>Magic Damage</th>
+                <th>Fire Damage</th>
+                <th>Physical Defense</th>
+                <th>Magic Defense</th>
+                <th>Fire Defense</th>
+                <th></th>
+            </tr>
+            @foreach (Equipment e in Model.AllEquipment)
+            {
+                <tr>
+                    <th>@e.Name</th>
+                    <td>@e.Type</td>
+                    <td>@e.Description</td>
+                    <td>@e.Color</td>
+                    <td>
+                        <select>
+                            <option selected></option>
+                            @foreach (Fighter f in Model.AllFighters)
+                            {
+                                foreach (string type in Logic.TypeValidation)
+                                {
+                                    if (f[type] == e)
+                                    {
+                                        <option disabled>@f.Name</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>@e.PhysDam</td>
+                    <td>@e.MagDam</td>
+                    <td>@e.FireDam</td>
+                    <td>@e.PhysDef</td>
+                    <td>@e.MagDef</td>
+                    <td>@e.FireDef</td>
+                    <td><a asp-action="EquipmentDelete" asp-route-equipmentId="@e.EquipmentID" class="btn btn-primary">Delete</a></td>
+                </tr>
+            }
+        </table>
     </div>
 }

@@ -75,7 +75,7 @@ namespace FightBuilder.Controllers
 
         public IActionResult DataTables()
         {
-            return View();
+            return View(true);
         }
 
         public IActionResult FighterTable()
@@ -98,12 +98,17 @@ namespace FightBuilder.Controllers
         {
             Fighter fighter = repo.Fighters.First(f => f.FighterID == fighterId);
             repo.DeleteFighter(fighter);
-            return View("DataTables");
+            return View("DataTables", true);
         }
 
         public IActionResult EquipmentTable()
         {
-            return View(repo.Equipment);
+            FighterView fighterView = new FighterView()
+            {
+                AllEquipment = repo.Equipment,
+                AllFighters = repo.Fighters
+            };
+            return View(fighterView);
         }
 
         public IActionResult EquipmentSearch(string search)
@@ -114,7 +119,27 @@ namespace FightBuilder.Controllers
                 if (e.Name.Contains(search))
                     equipment.Add(e);
             }
-            return View("EquipmentTable", equipment);
+            FighterView fighterView = new FighterView()
+            {
+                AllEquipment = equipment,
+                AllFighters = repo.Fighters
+            };
+            return View("EquipmentTable", fighterView);
+        }
+
+        public IActionResult EquipmentDelete(int equipmentId)
+        {
+            Equipment equipment = repo.Equipment.First(e => e.EquipmentID == equipmentId);
+            foreach (Fighter f in repo.Fighters)
+            {
+                foreach (string type in Logic.TypeValidation)
+                {
+                    if (f[type] == equipment)
+                        return View("DataTables", false);
+                }
+            }
+            repo.DeleteEquipment(equipment);
+            return View("DataTables", true);
         }
     }
 }
