@@ -10,5 +10,7 @@ namespace FightBuilder.Models
         public Fighter Fighter { get; set; }
         public List<Fighter> AllFighters { get; set; }
         public List<Equipment> AllEquipment { get; set; }
+        public bool Duplicate { get; set; }
+        public string FighterStatus { get; set; }
     }
 }

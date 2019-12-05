@@ -9,5 +9,7 @@ namespace FightBuilder.Models
     {
         public Equipment Equipment { get; set; }
         public List<Equipment> AllEquipment { get; set; }
+        public bool Duplicate { get; set; }
+        public string EquipmentStatus { get; set; }
     }
 }

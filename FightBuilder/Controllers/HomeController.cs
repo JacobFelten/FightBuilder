@@ -17,9 +17,35 @@ namespace FightBuilder.Controllers
             repo = repository;
         }
 
+        //Finds the 3 fighters with the most wins and the 3 fighters with the most
+        //losses and sends them to the home page along with a random equipment
         public IActionResult Index()
         {
-            return View();
+            HomeView homeView = new HomeView()
+            {
+                Winners = new List<Fighter>(),
+                Losers = new List<Fighter>()
+            };
+            List<Fighter> winners = repo.Fighters;
+            winners.Sort((f1, f2) => f1.Wins.CompareTo(f2.Wins));
+            List<Fighter> losers = repo.Fighters;
+            losers.Sort((f1, f2) => f1.Losses.CompareTo(f2.Losses));
+
+            for (int i = 0; i < repo.Fighters.Count && i < 3; i++)
+            {
+                homeView.Winners.Add(winners[repo.Fighters.Count - 1 - i]);
+                homeView.Losers.Add(losers[repo.Fighters.Count - 1 - i]);
+            }
+
+            if (repo.Equipment.Count > 0)
+            {
+                Random random = new Random();
+                homeView.RandomEquipment = repo.Equipment[random.Next(0, repo.Equipment.Count)];
+            }
+            else
+                homeView.RandomEquipment = null;
+   
+            return View(homeView);
         }
 
         public IActionResult Fight()
@@ -88,7 +114,7 @@ namespace FightBuilder.Controllers
             List<Fighter> fighters = new List<Fighter>();
             foreach (Fighter f in repo.Fighters)
             {
-                if (f.Name.Contains(search))
+                if (search != null && f.Name.Contains(search))
                     fighters.Add(f);
             }
             return View("FighterTable", fighters);
@@ -116,7 +142,7 @@ namespace FightBuilder.Controllers
             List<Equipment> equipment = new List<Equipment>();
             foreach (Equipment e in repo.Equipment)
             {
-                if (e.Name.Contains(search))
+                if (search != null && e.Name.Contains(search))
                     equipment.Add(e);
             }
             FighterView fighterView = new FighterView()

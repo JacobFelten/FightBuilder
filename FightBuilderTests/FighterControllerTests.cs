@@ -37,11 +37,11 @@ namespace FightBuilderTests
             Assert.Equal(3, repo.Fighters[2].FighterID);
             Assert.Equal("Jane", repo.Fighters[2].Name);
             Assert.Equal(repo.Equipment[0], repo.Fighters[2]["Head"]);
-            Assert.Equal(Logic.blankEquipment, repo.Fighters[2]["Chest"]);
-            Assert.Equal(Logic.blankEquipment, repo.Fighters[2]["Gloves"]);
-            Assert.Equal(Logic.blankEquipment, repo.Fighters[2]["Pants"]);
-            Assert.Equal(Logic.blankEquipment, repo.Fighters[2]["Shoes"]);
-            Assert.Equal(Logic.blankEquipment, repo.Fighters[2]["Ring"]);
+            Assert.Null(repo.Fighters[2]["Chest"]);
+            Assert.Null(repo.Fighters[2]["Gloves"]);
+            Assert.Null(repo.Fighters[2]["Pants"]);
+            Assert.Null(repo.Fighters[2]["Shoes"]);
+            Assert.Null(repo.Fighters[2]["Ring"]);
             Assert.Equal(repo.Equipment[1], repo.Fighters[2]["Left Hand"]);
             Assert.Equal(repo.Equipment[2], repo.Fighters[2]["Right Hand"]);
         }
@@ -103,11 +103,11 @@ namespace FightBuilderTests
             Assert.Equal(2, repo.Fighters[1].FighterID);
             Assert.Equal("Jane", repo.Fighters[1].Name);
             Assert.Equal(repo.Equipment[0], repo.Fighters[1]["Head"]);
-            Assert.Equal(Logic.blankEquipment, repo.Fighters[1]["Chest"]);
-            Assert.Equal(Logic.blankEquipment, repo.Fighters[1]["Gloves"]);
-            Assert.Equal(Logic.blankEquipment, repo.Fighters[1]["Pants"]);
-            Assert.Equal(Logic.blankEquipment, repo.Fighters[1]["Shoes"]);
-            Assert.Equal(Logic.blankEquipment, repo.Fighters[1]["Ring"]);
+            Assert.Null(repo.Fighters[1]["Chest"]);
+            Assert.Null(repo.Fighters[1]["Gloves"]);
+            Assert.Null(repo.Fighters[1]["Pants"]);
+            Assert.Null(repo.Fighters[1]["Shoes"]);
+            Assert.Null(repo.Fighters[1]["Ring"]);
             Assert.Equal(repo.Equipment[1], repo.Fighters[1]["Left Hand"]);
             Assert.Equal(repo.Equipment[2], repo.Fighters[1]["Right Hand"]);
         }

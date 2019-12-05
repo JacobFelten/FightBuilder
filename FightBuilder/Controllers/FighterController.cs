@@ -23,7 +23,9 @@ namespace FightBuilder.Controllers
             {
                 Fighter = new Fighter(),
                 AllEquipment = repo.Equipment,
-                AllFighters = repo.Fighters
+                AllFighters = repo.Fighters,
+                Duplicate = false,
+                FighterStatus = ""
             };
 
             return View(fighterView);
@@ -48,17 +50,17 @@ namespace FightBuilder.Controllers
                     if (!FighterExists(fighterView.Fighter.Name))
                     {
                         repo.AddFighter(fighterView.Fighter);
-                        ViewBag.EquipmentStatus = "New Fighter Saved!";
+                        fighterView.FighterStatus = "New Fighter Saved!";
                     }
                     else
                     {
-                        ViewBag.EquipmentDuplicate = "You've already created a fighter named " + fighterView.Fighter.Name + ".";
+                        fighterView.Duplicate = true;
                     }
                 }
                 else
                 {
                     repo.UpdateFighter(fighterView.Fighter);
-                    ViewBag.EquipmentStatus = "Fighter Saved!";
+                    fighterView.FighterStatus = "Fighter Saved!";
                 }
             }
             fighterView.AllEquipment = repo.Equipment;
@@ -75,7 +77,9 @@ namespace FightBuilder.Controllers
                 {
                     Fighter = GetFighterById(id),
                     AllEquipment = repo.Equipment,
-                    AllFighters = repo.Fighters
+                    AllFighters = repo.Fighters,
+                    Duplicate = false,
+                    FighterStatus = ""
                 };
                 return View("Index", fighterView);
             }

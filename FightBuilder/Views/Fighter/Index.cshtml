@@ -5,7 +5,7 @@
     //{ "Head", "Chest", "Gloves", "Pants", "Shoes", "Ring", "Right Hand", "Left Hand" }
 
     string hidden = "hidden";
-    if ((ViewBag.EquipmentDuplicate ?? "") != "")
+    if (Model.Duplicate)
     {
         hidden = "";
     }
@@ -73,9 +73,9 @@
     <div class="card container">
         <div class="card-header">
             <div asp-validation-summary="All" class="text-danger"></div>
-            <h1 class="text-success">@ViewBag.EquipmentStatus</h1>
+            <h1 class="text-success">@Model.FighterStatus</h1>
             <ul class="@hidden">
-                <li class="text-danger">@ViewBag.EquipmentDuplicate</li>
+                <li class="text-danger">You've already created a fighter named @Model.Fighter.Name.</li>
             </ul>
         </div>
         <div class="card-body">

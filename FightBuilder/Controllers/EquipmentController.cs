@@ -22,7 +22,9 @@ namespace FightBuilder.Controllers
             EquipmentView equipmentView = new EquipmentView
             {
                 Equipment = new Equipment(),
-                AllEquipment = repo.Equipment
+                AllEquipment = repo.Equipment,
+                Duplicate = false,
+                EquipmentStatus = ""
             };
             return View(equipmentView);
         }
@@ -37,18 +39,18 @@ namespace FightBuilder.Controllers
                     if (!EquipmentExists(equipmentView.Equipment.Name))
                     {
                         repo.AddEquipment(equipmentView.Equipment);
-                        ViewBag.EquipmentStatus = "New Equipment Saved!";
+                        equipmentView.EquipmentStatus = "New Equipment Saved!";
                     }
                     else
                     {
-                        ViewBag.EquipmentDuplicate = "You've already created equipment named " + equipmentView.Equipment.Name + ".";
+                        equipmentView.Duplicate = true;
                     }
                 }
                 else
                 {
                     repo.UpdateEquipment(equipmentView.Equipment);
                     UpdateFighters();
-                    ViewBag.EquipmentStatus = "Equipment Saved!";
+                    equipmentView.EquipmentStatus = "Equipment Saved!";
                 }
             }
             equipmentView.AllEquipment = repo.Equipment;
@@ -63,7 +65,9 @@ namespace FightBuilder.Controllers
                 EquipmentView equipmentView = new EquipmentView
                 {
                     Equipment = GetEquipmentById(id),
-                    AllEquipment = repo.Equipment
+                    AllEquipment = repo.Equipment,
+                    Duplicate = false,
+                    EquipmentStatus = ""
                 };
                 return View("Index", equipmentView);
             }
@@ -97,7 +101,7 @@ namespace FightBuilder.Controllers
             {
                 for (int i = 0; i < Logic.TypeValidation.Count(); i++)
                 {
-                    if (f[Logic.TypeValidation[i]].Type != Logic.TypeValidation[i])
+                    if (f[Logic.TypeValidation[i]] != null && f[Logic.TypeValidation[i]].Type != Logic.TypeValidation[i])
                         f[Logic.TypeValidation[i]] = null;
                 }
             }

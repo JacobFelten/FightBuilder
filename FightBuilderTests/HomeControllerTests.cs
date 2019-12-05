@@ -6,110 +6,85 @@ using FightBuilder.Controllers;
 
 namespace FightBuilderTests
 {
-    public class EquipmentControllerTests
+    public class HomeControllerTests
     {
         [Fact]
-        public void SaveTest()
+        public void FightStartTest()
         {
             //Arrange
             var repo = new FakeRepository();
+            var controller = new HomeController(repo);
             AddTestData(repo);
-            var controller = new EquipmentController(repo);
-            var e = new Equipment()
-            {
-                EquipmentID = 0,
-                Type = "Pants",
-                Name = "Steel Legs",
-                Description = "Lower piece of armor.",
-                Color = "Orange",
-                PhysDam = 0,
-                MagDam = 0,
-                FireDam = 0,
-                PhysDef = 50,
-                FireDef = 30,
-                MagDef = 30
-            };
-            var eV = new EquipmentView()
-            {
-                Equipment = e,
-            };
 
             //Act
-            controller.Save(eV);
+            controller.FightStart(1, 2);
 
             //Assert
-            Assert.Equal(4, repo.Equipment.Count);
-            Assert.Equal(4, repo.Equipment[3].EquipmentID);
-            Assert.Equal("Steel Legs", repo.Equipment[3].Name);
+            Assert.Equal(6, repo.Fighters[0].Wins);
+            Assert.Equal(2, repo.Fighters[0].Losses);
+            Assert.Equal(0, repo.Fighters[1].Wins);
+            Assert.Equal(1, repo.Fighters[1].Losses);
         }
 
         [Fact]
-        public void SaveSameNameTest()
+        public void FightStartCloneFightTest()
         {
             //Arrange
             var repo = new FakeRepository();
+            var controller = new HomeController(repo);
             AddTestData(repo);
-            var controller = new EquipmentController(repo);
-            var e = new Equipment()
-            {
-                EquipmentID = 0,
-                Type = "Pants",
-                Name = "Shield",
-                Description = "Lower piece of armor.",
-                Color = "Orange",
-                PhysDam = 0,
-                MagDam = 0,
-                FireDam = 0,
-                PhysDef = 50,
-                FireDef = 30,
-                MagDef = 30
-            };
-            var eV = new EquipmentView()
-            {
-                Equipment = e,
-            };
 
             //Act
-            controller.Save(eV);
+            controller.FightStart(1, 1);
 
             //Assert
-            Assert.Equal(3, repo.Equipment.Count);
+            Assert.Equal(6, repo.Fighters[0].Wins);
+            Assert.Equal(3, repo.Fighters[0].Losses);
         }
 
         [Fact]
-        public void SaveAnEditTest()
+        public void FighterDeleteTest()
         {
             //Arrange
             var repo = new FakeRepository();
+            var controller = new HomeController(repo);
             AddTestData(repo);
-            var controller = new EquipmentController(repo);
-            var e = new Equipment()
-            {
-                EquipmentID = 1,
-                Type = "Pants",
-                Name = "Steel Legs",
-                Description = "Lower piece of armor.",
-                Color = "Orange",
-                PhysDam = 0,
-                MagDam = 0,
-                FireDam = 0,
-                PhysDef = 50,
-                FireDef = 30,
-                MagDef = 30
-            };
-            var eV = new EquipmentView()
-            {
-                Equipment = e,
-            };
 
             //Act
-            controller.Save(eV);
+            controller.FighterDelete(2);
+
+            //Assert
+            Assert.Single(repo.Fighters);
+        }
+
+        [Fact]
+        public void EquipmentDeleteTest()
+        {
+            //Arrange
+            var repo = new FakeRepository();
+            var controller = new HomeController(repo);
+            AddTestData(repo);
+
+            //Act
+            controller.EquipmentDelete(2);
+
+            //Assert
+            Assert.Equal(2, repo.Equipment.Count);
+        }
+
+        [Fact]
+        public void EquipmentDeleteInUseTest()
+        {
+            //Arrange
+            var repo = new FakeRepository();
+            var controller = new HomeController(repo);
+            AddTestData(repo);
+
+            //Act
+            controller.EquipmentDelete(1);
 
             //Assert
             Assert.Equal(3, repo.Equipment.Count);
-            Assert.Equal(1, repo.Equipment[0].EquipmentID);
-            Assert.Equal("Steel Legs", repo.Equipment[0].Name);
-            Assert.Null(repo.Fighters[0]["Head"]);
         }
 
         private void AddTestData(FakeRepository repo)

@@ -79,7 +79,6 @@ namespace FightBuilderTests
             Assert.True(t);
             Assert.False(f);
         }
-        */
 
         [Fact]
         public void CopyEquipmentTest()
@@ -133,8 +132,7 @@ namespace FightBuilderTests
             Assert.Equal(5, f.Wins);
             Assert.Equal(2, f.Losses);
         }
-
-        /*
+        
         [Fact]
         public void UpdateFightersTest()
         {
@@ -215,7 +213,7 @@ namespace FightBuilderTests
             AddTestData(repo);
             AddTestData2(repo);
             Fighter f1 = repo.Fighters[0];
-            f1["Head"] = Logic.blankEquipment;
+            f1["Head"] = null;
             f1["Right Hand"] = repo.Equipment[3];
             Fighter f2 = repo.Fighters[1];
             f2["Left Hand"] = repo.Equipment[4];
@@ -239,7 +237,7 @@ namespace FightBuilderTests
             AddTestData(repo);
             AddTestData2(repo);
             Fighter f1 = repo.Fighters[0];
-            f1["Head"] = Logic.blankEquipment;
+            f1["Head"] = null;
             f1["Right Hand"] = repo.Equipment[3];
             Fighter f2 = repo.Fighters[1];
             f2["Left Hand"] = repo.Equipment[4];
@@ -263,7 +261,7 @@ namespace FightBuilderTests
             AddTestData(repo);
             AddTestData2(repo);
             Fighter f1 = repo.Fighters[0];
-            f1["Head"] = Logic.blankEquipment;
+            f1["Head"] = null;
             f1["Right Hand"] = repo.Equipment[3];
             Fighter f2 = repo.Fighters[1];
             f2["Left Hand"] = repo.Equipment[4];
@@ -287,7 +285,7 @@ namespace FightBuilderTests
             AddTestData(repo);
             AddTestData2(repo);
             Fighter f1 = repo.Fighters[0];
-            f1["Head"] = Logic.blankEquipment;
+            f1["Head"] = null;
             f1["Right Hand"] = repo.Equipment[3];
             Fighter f2 = repo.Fighters[1];
             f2["Left Hand"] = repo.Equipment[4];
@@ -311,7 +309,6 @@ namespace FightBuilderTests
             AddTestData(repo);
             AddTestData2(repo);
             Fighter f1 = repo.Fighters[0];
-            f1["Head"] = Logic.blankEquipment;
             f1["Right Hand"] = repo.Equipment[3];
             Fighter f2 = repo.Fighters[1];
             f2["Left Hand"] = repo.Equipment[4];
