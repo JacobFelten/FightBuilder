@@ -19,6 +19,7 @@ namespace FightBuilder.Models
             get { return type; }
             set
             {
+                //Can only be set as one of the strings from the Logic class
                 if (Array.Exists(Logic.TypeValidation, element => element == value))
                 {
                     type = value;
@@ -29,7 +30,6 @@ namespace FightBuilder.Models
         }
 
         [Required(ErrorMessage = "Please enter a name for your equipment.")]
-        //[RegularExpression(".+\\@.+\\..+", ErrorMessage = "Please enter a valid email address")]
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -39,6 +39,7 @@ namespace FightBuilder.Models
             get { return color; }
             set
             {
+                //Can only be set as one of the strings from the Logic class
                 if (Array.Exists(Logic.ColorValidation, element => element == value))
                 {
                     color = value;

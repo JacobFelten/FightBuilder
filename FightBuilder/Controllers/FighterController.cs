@@ -31,6 +31,10 @@ namespace FightBuilder.Controllers
             return View(fighterView);
         }
 
+        //Passing the ids of each equipment to be worn by the fighter was how I chose to
+        //code this method when I realized a model can't be passed as the value from
+        //individual form inputs. I just pass the int ids and get the actual models that
+        //will fill the fighter in this method.
         [HttpPost]
         public IActionResult Save(FighterView fighterView, int head, int chest, int gloves, int pants, int shoes, int ring, int rHand, int lHand)
         {
@@ -45,13 +49,16 @@ namespace FightBuilder.Controllers
                 fighterView.Fighter["Right Hand"] = GetEquipmentById(rHand);
                 fighterView.Fighter["Left Hand"] = GetEquipmentById(lHand);
 
+                //Asking if it's a new fighter
                 if (fighterView.Fighter.FighterID == 0)
                 {
+                    // Asking if it's being given a unique name
                     if (!FighterExists(fighterView.Fighter.Name))
                     {
                         repo.AddFighter(fighterView.Fighter);
                         fighterView.FighterStatus = "New Fighter Saved!";
                     }
+                    //Else will update an existing fighter
                     else
                     {
                         fighterView.Duplicate = true;
@@ -71,6 +78,8 @@ namespace FightBuilder.Controllers
         [HttpPost]
         public IActionResult Edit(int id)
         {
+            //This If statement might not be needed because I don't believe this method
+            //will ever be called without a valid id, but it's set up to work regardless
             if (id != 0)
             {
                 FighterView fighterView = new FighterView

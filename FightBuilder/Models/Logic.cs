@@ -8,106 +8,15 @@ namespace FightBuilder.Repositories
 {
     public static class Logic
     {
+        //2 static string arrays that are used throughout the app
         public static string[] TypeValidation { get; } = 
             { "Head", "Chest", "Gloves", "Pants", "Shoes", "Ring", "Right Hand", "Left Hand" };
 
         public static string[] ColorValidation { get; } =
             { "Black", "White", "Red", "Orange", "Yellow", "Green", "Sky Blue", "Blue", "Purple", "Pink" };
 
-        /*
-        public static Equipment blankEquipment = new Equipment()
-        {
-            Name = ""
-        };
-
-        public static Fighter blankFighter = new Fighter();
-        */
-
-        /*
-        public Equipment GetEquipmentById(int id)
-        {
-            foreach (Equipment e in repo.Equipment)
-            {
-                if (e.Id == id)
-                    return e;
-            }
-            return blankEquipment;
-        }
-
-        public Fighter GetFighterById(int id)
-        {
-            foreach (Fighter f in repo.Fighters)
-            {
-                if (f.Id == id)
-                    return f;
-            }
-            return null;
-        }
-
-        public bool EquipmentExists(string name)
-        {
-            foreach (Equipment e in repo.Equipment)
-            {
-                if (e.Name == name)
-                    return true;
-            }
-            return false;
-        }
-
-        public bool FighterExists(string name)
-        {
-            foreach (Fighter f in repo.Fighters)
-            {
-                if (f.Name == name)
-                    return true;
-            }
-            return false;
-        }
-        
-
-        public static void CopyEquipment(Equipment original, Equipment copy)
-        {
-            copy.EquipmentID = original.EquipmentID;
-            copy.Name = original.Name;
-            copy.Type = original.Type;
-            copy.Description = original.Description;
-            copy.Color = original.Color;
-            copy.PhysDam = original.PhysDam;
-            copy.MagDam = original.MagDam;
-            copy.FireDam = original.FireDam;
-            copy.PhysDef = original.PhysDef;
-            copy.MagDef = original.MagDef;
-            copy.FireDef = original.FireDef;
-        }
-
-        public static void CopyFighter(Fighter original, Fighter copy)
-        {
-            copy.FighterID = original.FighterID;
-            copy.Name = original.Name;
-            copy.Description = original.Description;
-            copy.Color = original.Color;
-            foreach (string type in TypeValidation)
-            {
-                copy[type] = original[type];
-            }
-            copy.Wins = original.Wins;
-            copy.Losses = original.Losses;
-        }
-
-        
-        public void UpdateFighters()
-        {
-            foreach (Fighter f in repo.Fighters)
-            {
-                for (int i = 0; i < TypeValidation.Count(); i++)
-                {
-                    if (f[TypeValidation[i]].Type != TypeValidation[i])
-                        f[TypeValidation[i]] = blankEquipment;
-                }
-            }
-        }
-        */
-
+        //The next 3 methods are used by the views to generate a string that matches
+        //one of the files in wwwroot/Images
         public static string GeneratePicColor(string color)
         {
             if (color == "Sky Blue")
@@ -134,6 +43,8 @@ namespace FightBuilder.Repositories
             return "Fighter" + GeneratePicColor(f.Color) + ".jpg";
         }
 
+        //The next 5 methods are used to calculate damage values, a winner, and a loser
+        //when given 2 fighters
         public static int CalculateFireDamage(Fighter f1, Fighter f2)
         {
             int f1FireDamage = f2.TotalFireDam - f1.TotalFireDef;

@@ -39,7 +39,7 @@ namespace FightBuilder
             services.AddTransient<IRepository, Repository>();
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
-                Configuration["ConnectionStrings:LocalDbConnection"]));
+                Configuration["ConnectionStrings:DatabaseConnection"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,8 +66,6 @@ namespace FightBuilder
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            SeedData.Seed(app);
         }
     }
 }

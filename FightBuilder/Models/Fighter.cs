@@ -21,6 +21,7 @@ namespace FightBuilder.Models
             get { return color; }
             set
             {
+                //Can only be set as one of the strings from the Logic class
                 if (Array.Exists(Logic.ColorValidation, element => element == value))
                 {
                     color = value;
@@ -37,6 +38,9 @@ namespace FightBuilder.Models
         public Equipment Ring { get; set; }
         public Equipment RightHand { get; set; }
         public Equipment LeftHand { get; set; }
+
+        //This indexer is so throughout the app I can easily loop through the 8 equipment
+        //properties by the strings from Logic.TypeValidation
         public Equipment this[string key]
         {
             get
@@ -98,6 +102,9 @@ namespace FightBuilder.Models
                     throw new Exception(key + " is not an equipment type.");
             }
         }
+
+        //The next 6 properties loop through all 8 equipment properties via the indexer
+        //to calculate their totals
         public int TotalPhysDam
         {
             get

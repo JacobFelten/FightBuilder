@@ -62,6 +62,7 @@ namespace FightBuilder.Controllers
             return View(fightView);
         }
 
+        //Shows the user two fighters based on the ids given
         [HttpPost]
         public IActionResult Fight(int fighter1Id, int fighter2Id)
         {
@@ -77,6 +78,7 @@ namespace FightBuilder.Controllers
             return View(fightView);
         }
 
+        //Puts two users through a fight which will change each of their wins or losses property
         public IActionResult FightStart(int fighter1Id, int fighter2Id)
         {
             FightView fightView = new FightView
@@ -127,6 +129,8 @@ namespace FightBuilder.Controllers
             return View("DataTables", true);
         }
 
+        //The next two methods return FighterViews because the page displays a list
+        //of fighters that are using each equipment
         public IActionResult EquipmentTable()
         {
             FighterView fighterView = new FighterView()
@@ -153,6 +157,7 @@ namespace FightBuilder.Controllers
             return View("EquipmentTable", fighterView);
         }
 
+        //This method will only delete an equipment if it isn't being worn by a fighter
         public IActionResult EquipmentDelete(int equipmentId)
         {
             Equipment equipment = repo.Equipment.First(e => e.EquipmentID == equipmentId);

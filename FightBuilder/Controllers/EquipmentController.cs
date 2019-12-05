@@ -34,8 +34,10 @@ namespace FightBuilder.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Asking if it's a new equipment
                 if (equipmentView.Equipment.EquipmentID == 0)
                 {
+                    //Asking if it's being given a unique name
                     if (!EquipmentExists(equipmentView.Equipment.Name))
                     {
                         repo.AddEquipment(equipmentView.Equipment);
@@ -46,6 +48,7 @@ namespace FightBuilder.Controllers
                         equipmentView.Duplicate = true;
                     }
                 }
+                //Else will update an existing equipment
                 else
                 {
                     repo.UpdateEquipment(equipmentView.Equipment);
@@ -60,6 +63,8 @@ namespace FightBuilder.Controllers
         [HttpPost]
         public IActionResult Edit(int id)
         {
+            //This If statement might not be needed because I don't believe this method
+            //will ever be called without a valid id, but it's set up to work regardless
             if (id != 0)
             {
                 EquipmentView equipmentView = new EquipmentView
@@ -95,6 +100,9 @@ namespace FightBuilder.Controllers
             return false;
         }
 
+        //This method removes all equipment from fighters where the type of equipment
+        //doesn't match the type wanted by the fighter. It's called whenever an equipment
+        //is updated.
         private void UpdateFighters()
         {
             foreach (Fighter f in repo.Fighters)
