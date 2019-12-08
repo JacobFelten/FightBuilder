@@ -1,5 +1,3 @@
-C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilder\bin\Release\netcoreapp2.2\win-x86\hostpolicy.dll
-C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilder\bin\Release\netcoreapp2.2\win-x86\hostfxr.dll
 C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilder\bin\Release\netcoreapp2.2\win-x86\FightBuilder.exe
 C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilder\bin\Release\netcoreapp2.2\win-x86\FightBuilder.deps.json
 C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilder\bin\Release\netcoreapp2.2\win-x86\FightBuilder.runtimeconfig.json
@@ -35,3 +33,5 @@ C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilder
 C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilder\obj\Release\netcoreapp2.2\win-x86\FightBuilder.dll
 C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilder\obj\Release\netcoreapp2.2\win-x86\FightBuilder.pdb
 C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilder\obj\Release\netcoreapp2.2\win-x86\FightBuilder.csproj.CopyComplete
+C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilder\bin\Release\netcoreapp2.2\win-x86\hostpolicy.dll
+C:\Users\Jacob\Documents\Lane Stuff\CS295N\TermProject\FightBuilder\FightBuilder\bin\Release\netcoreapp2.2\win-x86\hostfxr.dll
